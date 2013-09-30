@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!DOCTYPE model 
+    PUBLIC "-//SIPFoundry//sipXconfig//Model specification 2.0//EN" 
+    "http://www.sipfoundry.org/sipXconfig/dtd/setting_2_0.dtd">
+<model>
+<group name="yealinkFiles">
+	<label>Firmware</label>
+	<description>Firmware for Yealink phones</description>
+	<setting name="yealink_SIP-T12.rom">
+    		<label>SIP-T12(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T12.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 5.x.x.x.rom </description>
+        </setting>
+	<setting name="yealink_SIP-T18.rom">
+    		<label>SIP-T18(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T18.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 18.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T20.rom">
+    		<label>SIP-T20(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T20.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 9.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T22.rom">
+    		<label>SIP-T22(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T22.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 7.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T26.rom">
+    		<label>SIP-T26(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T26.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 6.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T28.rom">
+    		<label>SIP-T28(P)</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T28.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 2.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T32.rom">
+    		<label>SIP-T32G</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T32.rom</rename>
+    			</file>
+    		</type>
+		<description>32.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T38.rom">
+    		<label>SIP-T38G</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T38.rom</rename>
+    			</file>
+    		</type>
+		<description>38.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_VP530.rom">
+    		<label>VP530</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>VP530.rom</rename>
+    			</file>
+    		</type>
+		<description>23.x.x.x.rom</description>
+        </setting>
+        <setting name="Logo132x64.dob">
+            <label>Logo</label>
+            <type>
+                <file>
+                    <contentType>application/binary</contentType>
+                    <rename>yealinkLogo132x64.dob</rename>
+                </file>
+            </type>
+            <description>Logo in DOB format</description>
+        </setting>
+	<setting name="yealink_SIP-T38G_idle_screen.xml">
+    		<label>Idle screen XML</label>
+    		<type>
+    			<file>
+    				<contentType>text/xml</contentType>
+    				<rename>yealink_SIP-T38G_idle_screen.xml</rename>
+    			</file>
+    		</type>
+		<description>IdleScreen.xml</description>
+        </setting>
+	<setting name="yealinkWallpaper.jpg">
+    		<label>JPG Wallpaper for SIP-T3xG and VP530 phones</label>
+    		<type>
+    			<file>
+    				<contentType>text/xml</contentType>
+    				<rename>yealinkWallpaper.jpg</rename>
+    			</file>
+    		</type>
+		<description>yealinkWallpaper.jpg</description>
+        </setting>
+	<setting name="yealinkScreensaver.jpg">
+    		<label>JPG Screensaver for SIP-T3xG phones</label>
+    		<type>
+    			<file>
+    				<contentType>text/xml</contentType>
+    				<rename>yealinkScreensaver.jpg</rename>
+    			</file>
+    		</type>
+		<description>yealinkScreensaver.jpg</description>
+        </setting>
+        <setting name="lang+English.txt">
+            <label>Custom LCD Language file</label>
+            <type>
+                <file>
+                    <contentType>application/binary</contentType>
+                </file>
+            </type>
+            <description>UTF16LE text file, named lang+English.txt by default</description>
+        </setting>
+</group>
+</model>

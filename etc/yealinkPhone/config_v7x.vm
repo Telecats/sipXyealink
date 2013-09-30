@@ -1,0 +1,104 @@
+#######################
+## (start) macro's
+########################
+#macro(write_parameter $parameter, $value)
+#set($isSpeeddialRelatedParam = $speeddial.process($parameter, $value))
+#if(!$isSpeeddialRelatedParam)
+#set($outputLine  = $writer.writeConfig($parameter,$!{value}))
+#if( "$!outputLine" != "" )
+$outputLine
+#end
+#end
+#end
+##
+#macro(write_comment $comment)
+#set($outputLine = $writer.writeComment($!{comment}))
+#if( "$!outputLine" != "" )
+$outputLine
+#end
+#end
+##
+#macro(write_signature $signature)
+#set($outputLine = $writer.writeSignature($!{signature}))
+#if( "$!outputLine" != "" )
+$outputLine
+#end
+#end
+#macro(init_speeddial_processor $line)
+$speeddial.init($line)
+#end
+########################
+## (end) macro's
+########################
+##
+#set($serial = "$phone.SerialNumber")
+#set($maxLineCount = $phone.MaxLineCount)
+#set($signatureL1 = '####################################################')
+#set($signatureL2 = '##         MAC-Oriented CFG File                  ##')
+#set($signatureL3 = '####################################################')
+#set($signatureL4 = '#!version:1.0.0.1')
+#set($signatureL5 = '#File header "#!version:1.0.0.1" cannot be edited or deleted.##')
+#write_signature($signatureL4)
+#write_signature($signatureL5)
+
+#write_comment("Generated at: $!{phone.now}")
+
+#write_comment("Enable configured lines")
+#set($line_index = 0)
+#foreach ($line in $phone.lines)
+#if($line_index == 0)
+#init_speeddial_processor($line)
+#set($line_index = 1)
+#end
+#set ($lastLineID = $velocityCount)
+#set ($SLP = $lastLineID - 1)
+#set ($SLP = $SLP * 10)
+#set ($SLP = $SLP + 5060)
+#write_comment("Line ${lastLineID} settings")
+#foreach ($group in $line.Settings.Values)
+#write_comment(${group.name})
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName} == "voice_mail.number")
+#write_parameter("${setting.ProfileName}.${lastLineID}","$!{setting.Value}")
+#else
+#write_parameter("account.${lastLineID}.${setting.ProfileName}","$!{setting.Value}")
+#end
+#end
+#end
+#write_parameter("account.${lastLineID}.sip_listen_port","${SLP}")
+#end
+
+#set ($lastLineID = $lastLineID + 1)
+#if (${lastLineID}<${maxLineCount})
+#write_comment("Disable other lines")
+#foreach($L in [${lastLineID}..${maxLineCount}])
+#set ($SLP = $L - 1)
+#set ($SLP = $SLP * 10)
+#set ($SLP = $SLP + 5060)
+#write_parameter("account.${L}.enable","0")
+#write_parameter("account.${L}.label","")
+#write_parameter("account.${L}.display_name","")
+#write_parameter("account.${L}.user_name","")
+#write_parameter("account.${L}.auth_name","")
+#write_parameter("account.${L}.password","")
+#write_parameter("account.${L}.sip_listen_port","${SLP}")
+#write_parameter("account.${L}.sip_server_host","")
+#write_parameter("account.${L}.sip_server_port","5060")
+#write_parameter("account.${L}.outbound_proxy_enable","0")
+#write_parameter("account.${L}.outbound_host","")
+#write_parameter("account.${L}.outbound_port","5060")
+#write_parameter("account.${L}.transport","3")
+#write_parameter("account.${L}.backup_outbound_host","")
+#write_parameter("account.${L}.backup_outbound_port","5060")
+#end
+#end
+
+#foreach ($group in $phone.Settings.Values)
+#write_comment(${group.name})
+#foreach ($setting in $group.Values)
+#write_parameter("${setting.profileName}","$!{setting.Value}")
+#end
+#end
+
+$speeddial.getOutput($writer)
+

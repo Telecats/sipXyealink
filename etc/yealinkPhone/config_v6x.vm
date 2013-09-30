@@ -1,0 +1,323 @@
+#set($serial = "$phone.SerialNumber")
+; Erasing Accounts
+#foreach($L in [1..$phone.MaxLineCount])
+#set($lid = $L - 1)
+[ account ]
+path = /config/voip/sipAccount${lid}.cfg
+Enable = 0
+Label =
+UserName =
+AuthName =
+DisplayName =
+password =
+SIPServerHost =
+SIPServerPort = 5060
+SubscribeMWIToVM = 0
+
+[ audio0 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = PCMU
+priority = 1
+rtpmap = 0
+
+[ audio1 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = PCMA
+priority = 2
+rtpmap = 8
+
+[ audio2 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G723_53
+priority = 3
+rtpmap = 4
+
+[ audio3 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G723_63
+priority = 4
+rtpmap = 4
+
+[ audio4 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G729
+priority = 5
+rtpmap = 18
+
+[ audio5 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G722
+priority = 6
+rtpmap = 9
+
+[ audio6 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = iLBC
+priority = 0
+rtpmap = 102
+
+[ audio7 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G726-16
+priority = 0
+rtpmap = 112
+
+[ audio8 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G726-24
+priority = 0
+rtpmap = 102
+
+[ audio9 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G726-32
+priority = 0
+rtpmap = 2
+
+[ audio10 ]
+path = /config/voip/sipAccount${lid}.cfg
+enable = 0
+PayloadType = G726-40
+priority = 0
+rtpmap = 104
+
+#end
+; Erasing Remote Phone Books
+#foreach($RPB in [0..4])
+[ RemotePhoneBook${RPB} ]
+path = /config/Setting/Setting.cfg
+Name= %NULL%
+URL= %NULL%
+
+#end
+; Erasing Built-in Memory Keys
+#foreach($MK in [0..10])
+[ memory${MK} ]
+path = /config/vpPhone/vpPhone.ini
+Line = %NULL%
+type = %NULL%
+Value = %NULL%
+PickupValue = %NULL%
+Label = %NULL%
+DKtype = %NULL%
+XMLPhoneBook = %NULL%
+
+#end
+
+;; Config begin
+
+#foreach ($line in $phone.lines)
+#set ($i = $velocityCount - 1)
+#foreach ($group in $line.Settings.Values)
+#if (${group.Name}=="Message")
+#elseif (${group.Name}=="audio")
+#foreach ($setting in $group.Values)
+#if (${setting.Value} == -1 )
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 0
+priority = ${p}
+
+#elseif (${setting.Value} != 9 )
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 1
+priority = ${p}
+rtpmap = ${setting.Value}
+#if(${setting.Value}==0)
+PayloadType = PCMU
+#elseif(${setting.Value}==2)
+PayloadType = G726-32
+#elseif(${setting.Value}==4)
+PayloadType = G723_63
+#elseif(${setting.Value}==8)
+PayloadType = PCMA
+#elseif(${setting.Value}==18)
+PayloadType = G729
+#elseif(${setting.Value}==102)
+PayloadType = G726-24
+#elseif(${setting.Value}==112)
+PayloadType = G726-16
+#elseif(${setting.Value}==104)
+PayloadType = G726-40
+#end
+
+#elseif (${setting.Value} == 9 )
+#if ($phone.HasHD)
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 1
+priority = ${p}
+rtpmap = ${setting.Value}
+PayloadType = G722
+
+#end
+#end
+#end
+#else
+[ ${group.name} ]
+path = /config/voip/sipAccount${i}.cfg
+#if(${group.name}=="account")
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName}=="Label")
+#elseif (${setting.ProfileName}=="UserName")
+Label = $!{setting.Value}
+UserName = $!{setting.Value}
+#else
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#else
+#foreach ($setting in $group.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#end
+#end
+
+#end
+[ Message ]
+path = /config/Features/Message.cfg
+#foreach ($line in $phone.lines)
+#set ($i = $velocityCount - 1)
+#foreach ($group in $line.Settings.Values)
+#if (${group.Name}=="Message")
+#foreach ($setting in $group.Values)
+VoiceNumber${i} = $!{setting.Value}
+#end
+#end
+#end
+#end
+
+#foreach ($group in $phone.Settings.Values)
+#if(${group.name}=="LangFile")
+[ Lang ]
+#foreach ($setting in $group.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#elseif(${group.name}=="UserName")
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName}=="admin")
+[ AdminPassword ]
+path = /config/Setting/autop.cfg
+password = $!{setting.Value}
+
+#end
+#if (${setting.ProfileName}=="user")
+[ UserPassword ]
+path = /config/Setting/autop.cfg
+password = $!{setting.Value}
+#end
+#end
+#elseif(${group.name}=="DialNow")
+[DialNow]
+path = /tmp/dialnow.xml
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName} == "server_address")
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#elseif(${group.name}=="expansion-panels")
+#elseif(${group.name}=="AlertInfo")
+#foreach ($setting in $group.Values)
+#set ($parameter = ${setting.ProfileName.substring(0,1)})
+#if (${parameter}=="T")
+#set ($index = ${setting.ProfileName.substring(4)})
+[ ${group.name}${index} ]
+path = /config/Setting/Setting.cfg
+Text = $!{setting.Value}
+#elseif (${parameter}=="R")
+Ringer = $!{setting.Value}
+
+#end
+#end
+#elseif(${group.name}=="programablekey")
+#foreach ($setting in $group.Values)
+#set ($parameter = ${setting.ProfileName.substring(0,1)})
+#if (${parameter}=="L")
+#set ($index = ${setting.ProfileName.substring(4)})
+[ ${group.name}${index} ]
+path = /config/vpPhone/vpPhone.ini
+Line = $!{setting.Value}
+#elseif (${parameter}=="V")
+Value = $!{setting.Value}
+#elseif (${parameter}=="D")
+DKType = $!{setting.Value}
+#elseif (${parameter}=="X")
+XMLPhoneBook = $!{setting.Value}
+
+#end
+#end
+#elseif(${group.name}=="RemotePhoneBook")
+#foreach ($setting in $group.Values)
+#set ($parameter = ${setting.ProfileName.substring(0,1)})
+#if (${parameter}=="N")
+#set ($index = ${setting.ProfileName.substring(4)})
+[ ${group.name}${index} ]
+path = /config/Setting/Setting.cfg
+Name = $!{setting.Value}
+#elseif (${parameter}=="U")
+URL = $!{setting.Value}
+
+#end
+#end
+#else
+#if(${group.name}=="Webserver_Type")
+#set ($GroupName = "Webserver Type")
+#elseif(${group.name}=="Tone_Param")
+#set ($GroupName = "Tone Param")
+#elseif(${group.name}=="Forward_International")
+#set ($GroupName = "Forward International")
+#else
+#set ($GroupName = ${group.Name})
+#end
+[ ${GroupName} ]
+#foreach ($setting in $group.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#end
+
+#if ($phone.SoftKeyCount > 0)
+#foreach ($button in $cfg.SpeedDial)
+#set ($i = $velocityCount - 0)
+#if (${i}<11)
+[ memory${i} ]
+path = /config/vpPhone/vpPhone.ini
+Line = 0
+type = blf
+Value = $button.Number
+Label = $button.label
+PickupValue = $phone.DirectedCallPickupString$button.Number
+DKtype = 16
+#else
+#set ($e = $i / 10)
+#set ($k = $i - $e * 10 - 1)
+[key${k}]
+Path=/config/vpPhone/Ext38_0000000000000${e}.cfg
+Line = 0
+type = blf
+Value = $button.Number
+Label = $button.label
+PickupValue = $phone.DirectedCallPickupString$button.Number
+DKtype = 16
+#end
+
+#end
+#end

@@ -1,0 +1,469 @@
+<!-- Button types defined in this document -->
+
+<!-- Line keys 
+- LineKeysT20
+- LineKeysT22T26T28
+- LineKeysT32
+- LineKeysT38
+-->
+
+<!-- Programmable keys 
+- ProgrammableKeysT20
+- ProgrammableKeysT22T26T28
+- ProgrammableKeysT26T28
+- ProgrammableKeysT32
+- ProgrammableKeysT38
+-->
+
+<!-- Memory keys
+- MemoryKeysT26T28
+- MemoryKeys38
+-->
+
+
+<!-- Line keys -->
+<type id="LineKeysT20">
+    <enum>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="LineKeysT22T26T28">
+    <enum>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="LineKeysT32">
+    <enum>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>21</value><label>Shared line</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="LineKeysT38">
+    <enum>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>21</value><label>Shared line</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+
+<!-- Programmble keys -->
+<type id="ProgrammableKeysT20">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>28</value><label>History</label></option>
+        <option><value>29</value><label>Directory</label></option>
+        <option><value>30</value><label>Menu</label></option>
+        <option><value>31</value><label>Switch account</label></option>
+        <option><value>33</value><label>Status</label></option>
+        <option><value>43</value><label>Local phonebook</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="ProgrammableKeysT22T26T28">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>28</value><label>History</label></option>
+        <option><value>29</value><label>Directory</label></option>
+        <option><value>30</value><label>Menu</label></option>
+        <option><value>31</value><label>Switch account</label></option>
+        <option><value>32</value><label>New SMS</label></option>
+        <option><value>33</value><label>Status</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>43</value><label>Local phonebook</label></option>
+        <option><value>45</value><label>Local group</label></option>
+        <option><value>47</value><label>XML phonebook</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="ProgrammableKeysT32">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>28</value><label>History</label></option>
+        <option><value>29</value><label>Directory</label></option>
+        <option><value>30</value><label>Menu</label></option>
+        <option><value>32</value><label>New SMS</label></option>
+        <option><value>33</value><label>Status</label></option>
+        <option><value>43</value><label>Local phonebook</label></option>
+        <option><value>45</value><label>Local group</label></option>
+        <option><value>47</value><label>XML phonebook</label></option>
+        <option><value>48</value><label>Switch account up</label></option>
+        <option><value>49</value><label>Switch account down / Custom</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="ProgrammableKeysT38">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>28</value><label>History</label></option>
+        <option><value>29</value><label>Directory</label></option>
+        <option><value>30</value><label>Menu</label></option>
+        <option><value>32</value><label>New SMS</label></option>
+        <option><value>33</value><label>Status</label></option>
+        <option><value>43</value><label>Local phonebook</label></option>
+        <option><value>45</value><label>Local group</label></option>
+        <option><value>47</value><label>XML phonebook</label></option>
+        <option><value>48</value><label>Switch account up</label></option>
+        <option><value>49</value><label>Switch account down / Custom</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+
+
+<!-- Memory keys -->
+<type id="MemoryKeysT26T28">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>17</value><label>URL</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+        <option><value>49</value><label>Switch account down / Custom</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="MemoryKeysT38">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>17</value><label>URL</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>21</value><label>Shared line</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<!-- Memory keys -->
+<type id="ExpansionKeysT26T28">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>17</value><label>URL</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+	<option><value>37</value><label>Switch</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+        <option><value>49</value><label>Switch account down / Custom</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>
+
+<type id="ExpansionKeysT38">
+    <enum>
+	<option><value>0</value><label>N/A</label></option>
+        <option><value>1</value><label>Conference</label></option>
+        <option><value>2</value><label>Forward</label></option>
+        <option><value>3</value><label>Transfer</label></option>
+        <option><value>4</value><label>Hold</label></option>
+        <option><value>5</value><label>DND</label></option>
+        <option><value>6</value><label>Redial</label></option>
+        <option><value>7</value><label>Call return</label></option>
+        <option><value>8</value><label>SMS</label></option>
+        <option><value>9</value><label>Call pickup</label></option>
+        <option><value>10</value><label>Call park</label></option>
+        <option><value>11</value><label>DTMF</label></option>
+        <option><value>12</value><label>Voicemail</label></option>
+        <option><value>13</value><label>Speed dial</label></option>
+        <option><value>14</value><label>Intercom</label></option>
+        <option><value>15</value><label>Line</label></option>
+        <option><value>16</value><label>BLF</label></option>
+        <option><value>17</value><label>URL</label></option>
+        <option><value>18</value><label>Group listening</label></option>
+        <option><value>19</value><label>Public hold</label></option>
+        <option><value>20</value><label>Private hold</label></option>
+        <option><value>21</value><label>Shared line</label></option>
+        <option><value>22</value><label>XML group</label></option>
+        <option><value>23</value><label>Group pickup</label></option>
+        <option><value>24</value><label>Paging</label></option>
+        <option><value>25</value><label>Record</label></option>
+        <option><value>27</value><label>XML browser</label></option>
+        <option><value>34</value><label>Hotdesking</label></option>
+        <option><value>35</value><label>URL Record</label></option>
+	<option><value>37</value><label>Switch</label></option>
+        <option><value>38</value><label>LDAP</label></option>
+        <option><value>39</value><label>BLF list</label></option>
+        <option><value>40</value><label>Prefix / PTT</label></option>
+        <option><value>41</value><label>Zero Touch</label></option>
+        <option><value>42</value><label>ACD</label></option>
+        <option><value>45</value><label>Local group</label></option>
+	<option><value>50</value><label>Keypad lock</label></option>
+	<option><value>89</value><label>Do nothing</label></option>
+	<option><value>99</value><label>Auto speeddial</label></option>
+    </enum>
+</type>

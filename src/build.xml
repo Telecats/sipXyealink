@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  -->
+
+<project name="yealink-phones" default="jar" basedir="." >
+
+  <property name="project.dir" value="sipxyealink" />
+  <property name="debug" value="true"/>
+  <patternset id="test.classes" excludes="**"/>
+  <property name="build.dir" value="${top.build.dir}"/>
+  <import file="ant-targets.xml"/>
+
+  <path id="base.path" >
+    <pathelement location="${sipxconfig.jar}"/>
+    <pathelement location="${sipxcommons.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-lang.jar}"/>
+    <pathelement location="${commons-codec.jar}"/>
+    <pathelement location="${commons-httpclient.jar}"/>
+    <pathelement location="${dom4j.jar}"/>
+    <pathelement location="${org.springframework.beans-3.0.5.RELEASE.jar}"/>
+  </path>
+  <property name="classpath" refid="base.path" />
+
+
+  <!-- J A R -->
+  <target name="jar" depends="compile,manifest" description="create jar file">
+
+    <sipx-jar jarfile="${build.dir}/dist/yealink-phones.jar">
+      <fileset dir="${classes.dir}" >
+        <include name="**/*.class" />
+      </fileset>
+      <fileset dir="${src.dir}/src" >
+        <include name="**/*.beans.xml" /> 
+      </fileset>
+    </sipx-jar>
+  </target>
+
+  <!--
+    -  I N S T A L L
+    -->
+  <target name="install">
+
+    <!-- BINARIES/LIB/SCRIPTS -->
+    <delete dir="${dest.dir}${sipxyealink.lib.dir}"/>
+    <!--<mkdir dir="${dest.dir}${sipxyealink.lib.dir}"/>-->
+    <copy todir="${dest.dir}${sipxconfig.dir}">
+       <fileset file="${build.dir}/dist/yealink-phones.jar"/>
+    </copy>
+    
+    <mkdir dir="${dest.dir}${tmp.dir}/yealink"/>
+  </target>
+
+  <target name="uninstall">
+    <delete file="${dest.dir}${bin.dir}/sipxyealink.sh"/>
+    <delete dir="${dest.dir}${sipxyealink.lib.dir}"/>
+  </target>
+
+</project>

@@ -1,0 +1,2310 @@
+<?xml version="1.0" ?>
+<!DOCTYPE model
+    PUBLIC "-//SIPFoundry//sipXconfig//Model specification 2.0//EN"
+    "http://www.sipfoundry.org/sipXconfig/dtd/setting_2_0.dtd" [
+    <!ENTITY types SYSTEM "types.xml">
+    <!ENTITY button_types SYSTEM "button_types.xml">
+]>
+<model>
+&types;
+&button_types;
+    <group name="network">
+<!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address;
+    Require reboot;  //-->
+	<setting name="network.internet_port.type"><type refid="WAN_type"/><value>0</value></setting>
+<!--// Configure the static IP address, subnet mask, gateway and DNS server.
+    Require Reboot;  //-->
+	<setting name="network.internet_port.ip"><type><string/></type></setting>
+	<setting name="network.internet_port.mask"><type><string/></type></setting>
+	<setting name="network.internet_port.gateway"><type><string/></type></setting>
+	<setting name="network.primary_dns"><type><string/></type></setting>
+	<setting name="network.secondary_dns"><type><string/></type></setting>
+<!--// Configure the username and password for PPPOE connection.
+    Require reboot;  //-->
+	<setting name="network.pppoe.user"><type><string/></type></setting>
+	<setting name="network.pppoe.password"><type><string/></type></setting>
+<!--// Configure the PC port type; 0-Router, 1-Bridge (default);
+    Require reboot;  //-->
+	<setting name="network.bridge_mode"><type refid="LAN_type"/><value>1</value></setting>
+<!--// Configure the IP address and mask when the PC port is configured as Router.
+    Require reboot;  //-->
+	<setting name="network.pc_port.ip"><type><string/></type></setting>
+	<setting name="network.pc_port.mask"><type><string/></type></setting>
+<!--// Enable or disable the DHCP server when the PC port is configured as Router; 0-Disabled, 1-Enabled (default);
+    Require reboot;  //-->
+	<setting name="network.pc_port.dhcp_server"><type><boolean/></type><value>0</value></setting>
+<!--// Define the DHCP IP address range. The default is from 10.0.0.10 to 10.0.0.100.  //-->
+	<setting name="network.dhcp.start_ip"><type><string/></type></setting>
+	<setting name="network.dhcp.end_ip"><type><string/></type></setting>
+<!--// Enable or disable the VLAN of WAN port; 0-Disabled (default), 1-Enabled;
+    Require reboot;  //-->
+	<setting name="network.vlan.internet_port_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1.
+    Require reboot;  //-->
+	<setting name="network.vlan.internet_port_vid"><type><integer/></type><value>0</value></setting>
+<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. 
+    Require reboot;  //-->            
+	<setting name="network.vlan.internet_port_priority"><type><integer/></type><value>0</value></setting>
+<!--// Enable or disable the VLAN of PC port; 0-Disabled (default), 1-Enabled; 
+    Require reboot;  //-->
+	<setting name="network.vlan.pc_port_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1. 
+    Require reboot;  //-->
+	<setting name="network.vlan.pc_port_vid"><type><integer/></type><value>0</value></setting>
+<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. 
+    Require reboot;  //-->
+	<setting name="network.vlan.pc_port_priority"><type><integer/></type><value>0</value></setting>
+<!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only;
+    Require reboot;  //-->
+	<setting name="network.web_server_type"><type refid="web_server_type"/><value>1</value></setting>
+<!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535.
+     Require reboot;  //-->
+	<setting name="network.port.http"><type><integer/></type><value>80</value></setting>
+	<setting name="network.port.https"><type><integer/></type><value>443</value></setting>
+<!--// Configure the minimum local RTP port. It ranges from 0 to 65535, the default value is 11780.
+     Require reboot;  //-->
+	<setting name="network.port.min_rtpport"><type><integer/></type><value>11780</value></setting>
+<!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800.
+     Require reboot;  //-->
+	<setting name="network.port.max_rtpport"><type><integer/></type><value>11800</value></setting>
+<!--// Configure the voice QOS. It ranges from 0 to 63, the default value is 46.
+     Require reboot;  //-->
+	<setting name="network.qos.rtptos"><type><integer/></type><value>46</value></setting>
+<!--// Configure the SIP QOS. It ranges from 0 to 63, the default value is 46.
+     Require reboot;  //-->
+	<setting name="network.qos.signaltos"><type><integer/></type><value>26</value></setting>
+<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2;
+     Require reboot;  //-->
+	<setting name="network.802_1x.mode"><type refid="mode_802_1x_type"/><value>0</value></setting>
+<!--// Configure the username and password for 802.1x authentication.
+     Require reboot;  //-->
+	<setting name="network.802_1x.identity"><type><string/></type></setting>
+	<setting name="network.802_1x.md5_password"><type><string/></type></setting>
+<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled;
+     Require reboot;  //-->
+	<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the LLDP feature; 0-Disabled, 1-Enabled (default);
+     Require reboot;  //-->
+	<setting name="network.lldp.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the interval (in seconds) the phone broadcasts the LLDP request. It ranges from 1 to 3600, the default value is 120.
+     Require reboot;  //-->
+	<setting name="network.lldp.packet_interval"><type><integer/></type><value>120</value></setting>
+<!--// Enable or disable the phone to obtain DNS from DHCP; 0-Disabled, 1-Enabled (default);
+     Require reboot;  //-->
+	<setting name="network.static_dns_enable"><type><boolean/></type><value>0</value></setting>
+<!--// 
+#######################################################################################
+##                Syslog Server                                                      ##          
+#######################################################################################
+ //-->
+<!--// Configure the IP address of the syslog server.
+Require reboot; //-->
+	<setting name="syslog.server"><type><string/></type></setting>
+<!--// Configure the syslog level. It ranges from 0 to 6, the default value is 3.
+Require reboot; //-->
+	<setting name="syslog.log_level"><type refid="syslog_level_type"/><value>3</value></setting>
+<!--// 
+#######################################################################################
+##                 TR069                                                             ##
+#######################################################################################
+ //-->
+<!--// The TR069 feature is only applicable to some designated firmware versions.
+All settings of TR069 require reboot.
+Enable or disable the TR069 feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="managementserver.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the username and password for the phone to authenticate with the ACS. //-->
+	<setting name="managementserver.username"><type><string/></type></setting>
+	<setting name="managementserver.password"><type><string/></type></setting>
+<!--// Configure the access URL of the ACS. //-->
+	<setting name="managementserver.url"><type><string/></type></setting>
+<!--// Configure the username and password for the phone to authenticate the connection requests. //-->
+	<setting name="managementserver.connection_request_username"><type><string/></type></setting>
+	<setting name="managementserver.connection_request_password"><type><string/></type></setting>
+<!--// Enable or disable the phone to inform the ACS of its configuration; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="managementserver.periodic_inform_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the interval (in seconds) the phone to inform the ACS of its configuration. The default value is 60. //-->
+	<setting name="managementserver.periodic_inform_interval"><type><integer/></type><value>60</value></setting>
+    </group>
+    <group name="auto-provisioning">
+<!--// 
+#######################################################################################
+##                 Auto Provisioning                                                 ##      
+#######################################################################################
+ //-->
+<!--// Enable or disable the Plug and Play feature; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="auto_provision.pnp_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to check new configuration when powered on; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="auto_provision.mode"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to check the new configuration repeatedly; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="auto_provision.repeat.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the interval (in minutes) the phone repeatedly checks the new configuration. The default is 1440. //-->
+	<setting name="auto_provision.repeat.minutes"><type><integer/></type><value>1440</value></setting>
+<!--// Enable or disable the phone to check the new configuration weekly; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="auto_provision.weekly.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the week time the phone checks the new configuration. Applicable when the auto provisioning mode is configured as weekly or power on + weekly; //-->
+	<setting name="auto_provision.weekly.mask"><type><string/></type><value>0123456</value></setting>
+	<setting name="auto_provision.weekly.begin_time"><type><string/></type><value>00:00</value></setting>
+	<setting name="auto_provision.weekly.end_time"><type><string/></type><value>00:00</value></setting>
+<!--// Configure the URL of the auto provisioning server. //-->
+	<setting name="auto_provision.server.url"><type><string/></type><value></value></setting>
+<!--// Configure the domain name of the PNP server. //-->
+	<setting name="auto_provision.pnp_domain_name"><type><string/></type><value></value></setting>
+<!--// Configure the PNP vendor information. //-->
+	<setting name="auto_provision.pnp_event_vendor"><type><string/></type><value></value></setting>
+<!--// Configure the name of the Common configuration file. //-->
+	<setting name="auto_provision.common_file_name"><type><string/></type><value></value></setting>
+<!--// Configure the username and password for downloading. //-->
+	<setting name="auto_provision.server.username"><type><string/></type><value>%NULL%</value></setting>
+	<setting name="auto_provision.server.password"><type><string/></type><value>%NULL%</value></setting>
+<!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="auto_provision.dhcp_option.enable"><type><boolean/></type><value>1</value></setting>
+<!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
+	<setting name="auto_provision.dhcp_option.option60_value"><type><string/></type><value></value></setting>
+<!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
+	<setting name="auto_provision.dhcp_option.list_user_options"><type><string/></type><value></value></setting>
+<!--// Configure AES key (16 characters) for decrypting the common CFG file. //-->
+	<setting name="auto_provision.aes_key_16.com"><type><string/></type><value></value></setting>
+<!--// Configure AES key (16 characters) for decrypting the MAC-Oriented CFG file. //-->
+	<setting name="auto_provision.aes_key_16.mac"><type><string/></type><value></value></setting>
+<!--// 
+#######################################################################################
+##	               Auto Provisioning Code                                        ##
+#######################################################################################
+ //-->
+<!--// This feature allows user to trigger the auto provisioning by dialing a predefined string on the phone, when there is no available accounts.
+Require reboot;
+"X" ranges from 1 to 50
+Configure the auto provisioning name.
+The valid value is a string, the maximum length is 100. //-->
+	<setting name="autoprovision.1.name"><type><string/></type><value></value></setting>
+<!--// Configure the auto provisioning code.
+The valid value is a string, the maximum length is 100. //-->
+	<setting name="autoprovision.1.code"><type><string/></type><value></value></setting>
+<!--// Configure the URL of the auto provisioning server.
+The valid value is a string, the maximum length is 256. //-->
+	<setting name="autoprovision.1.url"><type><string/></type><value></value></setting>
+<!--// Configure the username and password for downloading.
+The valid value is a string, the maximum length is 100. //-->
+	<setting name="autoprovision.1.user"><type><string/></type><value>%NULL%</value></setting>
+	<setting name="autoprovision.1.password"><type><string/></type><value>%NULL%</value></setting>
+<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+	<setting name="autoprovision.1.com_aes"><type><string/></type><value></value></setting>
+	<setting name="autoprovision.1.mac_aes"><type><string/></type><value></value></setting>
+    </group>
+    <group name="phone-features">
+<!--// 
+#######################################################################################
+##	                Phone Features                                                   ##
+#######################################################################################
+ //-->
+<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="sip.use_23_as_pound"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="sip.rfc2543_hold"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="sip.use_out_bound_in_dialog"><type><boolean/></type><value>1</value></setting>
+<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
+	<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
+	<setting name="sip.check_autop_result_before_register"><type><boolean/></type><value>0</value></setting>
+	<setting name="sip.send_response_by_request"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="sip.notify_reboot_enable"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="watch_dog.enable"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="redirect.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call;
+0-Disabled, 1-Enabled (default); //-->
+	<setting name="transfer.semi_attend_tran_enable"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook;
+0-Disabled,1-Enabled(default); //-->
+	<setting name="transfer.blind_tran_on_hook_enable"><type><boolean/></type><value>1</value></setting>
+	<setting name="transfer.on_hook_trans_enable"><type><boolean/></type><value>1</value></setting>
+<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
+	<setting name="transfer.dsskey_deal_type"><type refid="DSS_xfer_type"/><value>2</value></setting>
+
+<!--// Enable or disable the conference initiator to transfer the call when hanging up; 
+0-Disabled(default),1-Enabled; //-->
+	<setting name="transfer.tran_others_after_conf_enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="voice">
+<!--// 
+#######################################################################################
+##                                Voice                                              ##
+#######################################################################################
+ //-->
+<!--// Enable or disable the voice activity detection feature; 0-Disbaled (default), 1-Enabled; //-->
+	<setting name="voice.vad"><type><boolean/></type><value>0</value></setting>
+
+<!--// Enable or disable the comfortable noise generator; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="voice.cng"><type><boolean/></type><value>1</value></setting>
+
+<!--// Enable or disable the echo canceller; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="voice.echo_cancellation"><type><boolean/></type><value>1</value></setting>
+
+<!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
+	<setting name="voice.side_tone"><type><integer min="-48" max="0"/></type><value>-3</value></setting>
+
+<!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29.
+Require reboot; //-->
+	<setting name="voice.handfree_send"><type><integer/></type><value>25</value></setting>
+	<setting name="voice.handset_send"><type><integer/></type><value>35</value></setting>
+	<setting name="voice.headset_send"><type><integer/></type><value>29</value></setting>
+<!--// Configure the type of jitter buffer; 0-Fixed, 1-Adaptive (default); //-->
+	<setting name="voice.jib.adaptive"><type refid="jb_type"/><value>1</value></setting>
+<!--// Configure the minimum delay, maximum delay and normal delay. The default values are 0, 300, 120. //-->
+	<setting name="voice.jib.min"><type><integer/></type><value>0</value></setting>
+	<setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
+	<setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
+<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on.
+voice.tone.country = Custom //-->
+	<setting name="voice.tone.country"><type><string/></type><value>Custom</value></setting>
+<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
+The value format: Frequency/Duration.
+Frequency ranges from 200 to 7000. When 0 is used to define the frequency, it means a pause between tones.
+A tone can be composited at most four different frequencies (the value format is: F1+F2+F3+F4).
+Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
+At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
+For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
+	<setting name="voice.tone.dial"><type><string/></type><value>440/1000</value></setting>
+	<setting name="voice.tone.ring"><type><string/></type><value>440/1000,0/4000</value></setting>
+	<setting name="voice.tone.busy"><type><string/></type><value>440/250,0/250,440/250,0/250</value></setting>
+	<setting name="voice.tone.congestion"><type><string/></type><value>440/250,0/250,440/250,0/250</value></setting>
+	<setting name="voice.tone.callwaiting"><type><string/></type><value>440/500,0/9500</value></setting>
+	<setting name="voice.tone.dialrecall"><type><string/></type><value>470/400,425/400</value></setting>
+	<setting name="voice.tone.record"><type><string/></type><value>1600/500,0/7500</value></setting>
+	<setting name="voice.tone.info"><type><string/></type><value>!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0</value></setting>
+	<setting name="voice.tone.stutter"><type><string/></type><value>0/1000</value></setting>
+	<setting name="voice.tone.message"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
+<!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+	<setting name="voice.handfree.spk_vol"><type><integer/></type><value>8</value></setting>
+	<setting name="voice.handset.spk_vol"><type><integer/></type><value>8</value></setting>
+	<setting name="voice.headset.spk_vol"><type><integer/></type><value>8</value></setting>
+<!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+	<setting name="voice.handfree.tone_vol"><type><integer/></type><value>8</value></setting>
+	<setting name="voice.handset.tone_vol"><type><integer/></type><value>8</value></setting>
+	<setting name="voice.headset.tone_vol"><type><integer/></type><value>8</value></setting>
+<!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
+	<setting name="voice.ring_vol"><type><integer/></type><value>8</value></setting>
+<!--// Configure the Speaker volume when in the group listening mode. It ranges from 0 to 15, the default value is 8. //-->
+	<setting name="voice.group_spk_vol"><type refid="group_spk_vol_type"/><value>8</value></setting>
+    </group>
+    <group name="call-forwarding">
+	<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.always.target"><type><string/></type></setting>
+	<setting name="forward.always.on_code"><type><string/></type></setting>
+	<setting name="forward.always.off_code"><type><string/></type></setting>
+	<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.busy.target"><type><string/></type></setting>
+	<setting name="forward.busy.on_code"><type><string/></type></setting>
+	<setting name="forward.busy.off_code"><type><string/></type></setting>
+	<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.no_answer.target"><type><string/></type></setting>
+	<setting name="forward.no_answer.timeout"><type><string/></type></setting>
+	<setting name="forward.no_answer.on_code"><type><string/></type></setting>
+	<setting name="forward.no_answer.off_code"><type><string/></type></setting>
+	<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="security">
+<!--// 
+#######################################################################################
+##         	                   Security Settings                                 ##                   
+#######################################################################################
+ //-->
+<!--// Enable or disable the phone to only accept the certificates in the Trusted Certificates list;
+0-Disabled, 1-Enabled (default); //-->
+	<setting name="security.trust_certificates"><type><boolean/></type><value>1</value></setting>
+<!--// Define the login username and password of the user, var and administrator.
+If your username is defined as: security.user_name.admin = adminuser.
+and your password must like this: security.user_password = adminuser:adminpassword.
+adminuser is the value of "security.user_name.admin"; adminpassword is the password you want to set.
+security.user_name.admin = adminuser
+security.user_password = adminuser:adminpwd
+security.user_name.user = user1
+security.user_password = user1:user1pwd
+security.user_name.var = varuser
+security.user_password = varuser:adminpwd //-->
+<!--// TODO: make custom parsing  //-->
+	<setting name="security.user_name.user"><type><string/></type><value>user</value></setting>
+	<setting name="security.user_name.admin"><type><string/></type><value>admin</value></setting>
+	<setting name="security.user_name.var"><type><string/></type><value>custom</value></setting>
+	<setting name="security.user_password"><type><string/></type><value>admin:admin</value></setting>
+<!--// Enable or disable the 3-level permissions (open var); 0-Disabled (default), 1-Enabled;
+Require reboot; //-->
+	<setting name="security.var_enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="soft-key-layout">
+<!--// 
+#######################################################################################
+##                   Customize the softkey                                           ##                                 
+#######################################################################################
+ //-->
+<!--// Customize the softkeys presented on the phone LCD screen when Callfailed, Callin, Connecting, Dialing, Ringback and Talking. //-->
+	<setting name="custom_softkey_call_failed.url"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_call_in.url"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_connecting.url"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_dialing.url"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_ring_back.url"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_talking.url"><type><string/></type><value></value></setting>
+    </group>
+
+
+<!--//                       
+#######################################################################################
+##         	                   Line Key                                          ##                 
+#######################################################################################
+The x of the parameter "linekey.x.line" ranges from 1 to 6. 
+The default value equals to the value of x. For example, the default value of the parameter "linekey.1.line" is 1.
+linekey.x.lable Define the label for each line key.
+ //-->
+    <group name="line-keys-T20" if="LineKeysT20">
+	<setting name="linekey.1.type"><type refid="LineKeysT20"/><value>15</value></setting>
+	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.value"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting>
+	<setting name="linekey.2.type"><type refid="LineKeysT20"/><value>15</value></setting>
+	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.value"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.2.label"><type><string/></type></setting>
+    </group>
+    <group name="line-keys-T22T26" if="LineKeysT22T26">
+	<setting name="linekey.1.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.value"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting>
+	<setting name="linekey.2.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.value"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value" if="lineKey2"><type><string/></type></setting>
+	<setting name="linekey.2.xml_phonebook" if="lineKey2"><type><string/></type></setting>
+	<setting name="linekey.2.label"><type><string/></type></setting>
+	<setting name="linekey.3.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
+	<setting name="linekey.3.value"><type><string/></type></setting>
+	<setting name="linekey.3.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.3.label"><type><string/></type></setting>
+    </group>
+
+    <group name="line-keys-T28" if="LineKeysT28">
+	<setting name="linekey.1.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.value"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting>
+	<setting name="linekey.2.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.value"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.2.label"><type><string/></type></setting>
+	<setting name="linekey.3.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
+	<setting name="linekey.3.value"><type><string/></type></setting>
+	<setting name="linekey.3.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.3.label"><type><string/></type></setting>
+	<setting name="linekey.4.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.4.line"><type refid="yealink_line_type"/><value>4</value></setting>
+	<setting name="linekey.4.value"><type><string/></type></setting>
+	<setting name="linekey.4.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.4.label"><type><string/></type></setting>
+	<setting name="linekey.5.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.5.line"><type refid="yealink_line_type"/><value>5</value></setting>
+	<setting name="linekey.5.value"><type><string/></type></setting>
+	<setting name="linekey.5.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.5.label"><type><string/></type></setting>
+	<setting name="linekey.6.type"><type refid="LineKeysT22T26T28"/><value>15</value></setting>
+	<setting name="linekey.6.line"><type refid="yealink_line_type"/><value>6</value></setting>
+	<setting name="linekey.6.value"><type><string/></type></setting>
+	<setting name="linekey.6.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.6.label"><type><string/></type></setting>
+    </group>
+
+    <group name="line-keys-T32" if="LineKeysT32">
+	<setting name="linekey.1.type"><type refid="LineKeysT32"/><value>15</value></setting>
+	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.value"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting>
+	<setting name="linekey.2.type"><type refid="LineKeysT32"/><value>15</value></setting>
+	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.value"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.2.label"><type><string/></type></setting>
+	<setting name="linekey.3.type"><type refid="LineKeysT32"/><value>15</value></setting>
+	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
+	<setting name="linekey.3.value"><type><string/></type></setting>
+	<setting name="linekey.3.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.3.label" if="lineKey2"><type><string/></type></setting>
+    </group>
+
+    
+
+    <group name="line-keys-T38" if="LineKeysT38">
+	<setting name="linekey.1.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.value"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting>
+	<setting name="linekey.2.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.value"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.2.label"><type><string/></type></setting>
+	<setting name="linekey.3.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
+	<setting name="linekey.3.value"><type><string/></type></setting>
+	<setting name="linekey.3.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.3.label"><type><string/></type></setting>
+	<setting name="linekey.4.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.4.line"><type refid="yealink_line_type"/><value>4</value></setting>
+	<setting name="linekey.4.value"><type><string/></type></setting>
+	<setting name="linekey.4.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.4.label"><type><string/></type></setting>
+	<setting name="linekey.5.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.5.line"><type refid="yealink_line_type"/><value>5</value></setting>
+	<setting name="linekey.5.value"><type><string/></type></setting>
+	<setting name="linekey.5.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.5.label"><type><string/></type></setting>
+	<setting name="linekey.6.type"><type refid="LineKeysT38"/><value>15</value></setting>
+	<setting name="linekey.6.line"><type refid="yealink_line_type"/><value>6</value></setting>
+	<setting name="linekey.6.value"><type><string/></type></setting>
+	<setting name="linekey.6.pickup_value"><type><string/></type></setting>
+	<setting name="linekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="linekey.6.label" if="lineKey2"><type><string/></type></setting>
+    </group>
+
+<!--// 
+##########################################################################################
+##         	               Programmable Key (For T38G only)                         ##               
+##########################################################################################
+X ranges from 1 to 15.
+programablekey.x.type Customize the programmable key type.
+The valid types are: 
+0-N/A         2-Forward        5-DND           6-Redial     7-Call Return    8-SMS      9-Call Pickup  13-Spead Dial  14-Intercom
+22-XML Group  23-Group Pickup  27-XML Browser  28-History   29-Directory     30-Menu    32-New SMS     33-Status      43-Local Phonebook    
+44-Broadsoft Phonebook    45-Local Group    46-Broadsoft Group   47-XML Phonebook   48-Switch Account Up   49-Switch Account Down    50-Keypad Lock
+programablekey.x.line Configure the desired line to apply the key feature. It ranges from 0 to 6.
+The value 0 of the "proramablekey.x.line" stands for Auto, it means the first available line. 
+But, when the programmable key is configured as Pick Up, the value 0 stands for line 1.
+
+programablekey.x.value =
+programablekey.x.xml_phonebook Specify the desired remote phonebook/local group/BSFT phonebook for the programmable key. This parameter is only appilicable to the feature XML Group/Local Group/Broadsoft Group.
+programablekey.x.history_type =
+
+programablekey.x.label This parameter is only available to the key 1 to key 4. 
+ //-->
+<group name="programmable-keys-T20" if="ProgrammableKeysT20">
+	<setting name="programablekey.5.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>28</value></setting>	
+	<setting name="programablekey.5.line"><type><integer/></type></setting>
+	<setting name="programablekey.5.value"><type><string/></type></setting>
+	<setting name="programablekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.5.history_type"><type><string/></type></setting>
+	<setting name="programablekey.5.label"><type><string/></type></setting>
+
+	<setting name="programablekey.6.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>29</value></setting>
+	<setting name="programablekey.6.line"><type><integer/></type></setting>
+	<setting name="programablekey.6.value"><type><string/></type></setting>
+	<setting name="programablekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.6.history_type"><type><string/></type></setting>
+	<setting name="programablekey.6.label"><type><string/></type></setting>
+
+	<setting name="programablekey.7.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>31</value></setting>
+	<setting name="programablekey.7.line"><type><integer/></type></setting>
+	<setting name="programablekey.7.value"><type><string/></type></setting>
+	<setting name="programablekey.7.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.7.history_type"><type><string/></type></setting>
+	<setting name="programablekey.7.label"><type><string/></type></setting>
+
+	<setting name="programablekey.8.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>31</value></setting>
+	<setting name="programablekey.8.line"><type><integer/></type></setting>
+	<setting name="programablekey.8.value"><type><string/></type></setting>
+	<setting name="programablekey.8.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.8.history_type"><type><string/></type></setting>
+	<setting name="programablekey.8.label"><type><string/></type></setting>
+
+	<setting name="programablekey.9.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>33</value></setting>
+	<setting name="programablekey.9.line"><type><integer/></type></setting>
+	<setting name="programablekey.9.value"><type><string/></type></setting>
+	<setting name="programablekey.9.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.9.history_type"><type><string/></type></setting>
+	<setting name="programablekey.9.label"><type><string/></type></setting>
+
+	<setting name="programablekey.10.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>0</value></setting>
+	<setting name="programablekey.10.line"><type><integer/></type></setting>
+	<setting name="programablekey.10.value"><type><string/></type></setting>
+	<setting name="programablekey.10.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.10.history_type"><type><string/></type></setting>
+	<setting name="programablekey.10.label"><type><string/></type></setting>
+
+	<setting name="programablekey.11.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>0</value></setting>
+	<setting name="programablekey.11.line" unless="noPkConf"><type><integer/></type></setting>
+	<setting name="programablekey.11.value" unless="noPkConf"><type><string/></type></setting>
+	<setting name="programablekey.11.xml_phonebook" unless="noPkConf"><type><string/></type></setting>
+	<setting name="programablekey.11.history_type" unless="noPkConf"><type><string/></type></setting>
+	<setting name="programablekey.11.label" unless="noPkConf"><type><string/></type></setting>
+
+	<setting name="programablekey.12.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>0</value></setting>
+	<setting name="programablekey.12.line"><type><integer/></type></setting>
+	<setting name="programablekey.12.value"><type><string/></type></setting>
+	<setting name="programablekey.12.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.12.history_type"><type><string/></type></setting>
+	<setting name="programablekey.12.label"><type><string/></type></setting>
+
+	<setting name="programablekey.14.type" if="ProgrammableKeysT20"><type refid="ProgrammableKeysT20"/><value>2</value></setting>
+	<setting name="programablekey.14.line"><type><integer/></type></setting>
+	<setting name="programablekey.14.value"><type><string/></type></setting>
+	<setting name="programablekey.14.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.14.history_type"><type><string/></type></setting>
+	<setting name="programablekey.14.label"><type><string/></type></setting>
+</group>
+
+<group name="programmable-keys-T22" if="ProgrammableKeysT22">
+	<setting name="programablekey.1.type"><type refid="ProgrammableKeysT22T26T28"/><value>28</value></setting>	
+	<setting name="programablekey.1.line"><type><integer/></type></setting>
+	<setting name="programablekey.1.value"><type><string/></type></setting>
+	<setting name="programablekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.1.history_type"><type><string/></type></setting>
+	<setting name="programablekey.1.label"><type><string/></type></setting>
+
+	<setting name="programablekey.2.type"><type refid="ProgrammableKeysT22T26T28"/><value>29</value></setting>	
+	<setting name="programablekey.2.line"><type><integer/></type></setting>
+	<setting name="programablekey.2.value"><type><string/></type></setting>
+	<setting name="programablekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.2.history_type"><type><string/></type></setting>
+	<setting name="programablekey.2.label"><type><string/></type></setting>
+
+	<setting name="programablekey.3.type"><type refid="ProgrammableKeysT22T26T28"/><value>5</value></setting>	
+	<setting name="programablekey.3.line"><type><integer/></type></setting>
+	<setting name="programablekey.3.value"><type><string/></type></setting>
+	<setting name="programablekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.3.history_type"><type><string/></type></setting>
+	<setting name="programablekey.3.label"><type><string/></type></setting>
+
+	<setting name="programablekey.4.type"><type refid="ProgrammableKeysT22T26T28"/><value>30</value></setting>	
+	<setting name="programablekey.4.line"><type><integer/></type></setting>
+	<setting name="programablekey.4.value"><type><string/></type></setting>
+	<setting name="programablekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.4.history_type"><type><string/></type></setting>
+	<setting name="programablekey.4.label"><type><string/></type></setting>
+
+	<setting name="programablekey.5.type"><type refid="ProgrammableKeysT22T26T28"/><value>28</value></setting>	
+	<setting name="programablekey.5.line"><type><integer/></type></setting>
+	<setting name="programablekey.5.value"><type><string/></type></setting>
+	<setting name="programablekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.5.history_type"><type><string/></type></setting>
+	<setting name="programablekey.5.label"><type><string/></type></setting>
+
+	<setting name="programablekey.6.type"><type refid="ProgrammableKeysT22T26T28"/><value>29</value></setting>
+	<setting name="programablekey.6.line"><type><integer/></type></setting>
+	<setting name="programablekey.6.value"><type><string/></type></setting>
+	<setting name="programablekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.6.history_type"><type><string/></type></setting>
+	<setting name="programablekey.6.label"><type><string/></type></setting>
+
+	<setting name="programablekey.7.type"><type refid="ProgrammableKeysT22T26T28"/><value>31</value></setting>
+	<setting name="programablekey.7.line"><type><integer/></type></setting>
+	<setting name="programablekey.7.value"><type><string/></type></setting>
+	<setting name="programablekey.7.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.7.history_type"><type><string/></type></setting>
+	<setting name="programablekey.7.label"><type><string/></type></setting>
+
+	<setting name="programablekey.8.type"><type refid="ProgrammableKeysT22T26T28"/><value>31</value></setting>
+	<setting name="programablekey.8.line"><type><integer/></type></setting>
+	<setting name="programablekey.8.value"><type><string/></type></setting>
+	<setting name="programablekey.8.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.8.history_type"><type><string/></type></setting>
+	<setting name="programablekey.8.label"><type><string/></type></setting>
+
+	<setting name="programablekey.9.type"><type refid="ProgrammableKeysT22T26T28"/><value>33</value></setting>
+	<setting name="programablekey.9.line"><type><integer/></type></setting>
+	<setting name="programablekey.9.value"><type><string/></type></setting>
+	<setting name="programablekey.9.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.9.history_type"><type><string/></type></setting>
+	<setting name="programablekey.9.label"><type><string/></type></setting>
+
+	<setting name="programablekey.10.type"><type refid="ProgrammableKeysT22T26T28"/><value>0</value></setting>
+	<setting name="programablekey.10.line"><type><integer/></type></setting>
+	<setting name="programablekey.10.value"><type><string/></type></setting>
+	<setting name="programablekey.10.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.10.history_type"><type><string/></type></setting>
+	<setting name="programablekey.10.label"><type><string/></type></setting>
+
+	<setting name="programablekey.14.type"><type refid="ProgrammableKeysT22T26T28"/><value>2</value></setting>
+	<setting name="programablekey.14.line"><type><integer/></type></setting>
+	<setting name="programablekey.14.value"><type><string/></type></setting>
+	<setting name="programablekey.14.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.14.history_type"><type><string/></type></setting>
+	<setting name="programablekey.14.label"><type><string/></type></setting>
+</group>
+
+<group name="programmable-keys-T26T28" if="ProgrammableKeysT26T28">
+	<setting name="programablekey.1.type"><type refid="ProgrammableKeysT22T26T28"/><value>28</value></setting>	
+	<setting name="programablekey.1.line"><type><integer/></type></setting>
+	<setting name="programablekey.1.value"><type><string/></type></setting>
+	<setting name="programablekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.1.history_type"><type><string/></type></setting>
+	<setting name="programablekey.1.label"><type><string/></type></setting>
+
+	<setting name="programablekey.2.type"><type refid="ProgrammableKeysT22T26T28"/><value>29</value></setting>	
+	<setting name="programablekey.2.line"><type><integer/></type></setting>
+	<setting name="programablekey.2.value"><type><string/></type></setting>
+	<setting name="programablekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.2.history_type"><type><string/></type></setting>
+	<setting name="programablekey.2.label"><type><string/></type></setting>
+
+	<setting name="programablekey.3.type"><type refid="ProgrammableKeysT22T26T28"/><value>5</value></setting>	
+	<setting name="programablekey.3.line"><type><integer/></type></setting>
+	<setting name="programablekey.3.value"><type><string/></type></setting>
+	<setting name="programablekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.3.history_type"><type><string/></type></setting>
+	<setting name="programablekey.3.label"><type><string/></type></setting>
+
+	<setting name="programablekey.4.type"><type refid="ProgrammableKeysT22T26T28"/><value>30</value></setting>	
+	<setting name="programablekey.4.line"><type><integer/></type></setting>
+	<setting name="programablekey.4.value"><type><string/></type></setting>
+	<setting name="programablekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.4.history_type"><type><string/></type></setting>
+	<setting name="programablekey.4.label"><type><string/></type></setting>
+
+	<setting name="programablekey.5.type"><type refid="ProgrammableKeysT22T26T28"/><value>28</value></setting>	
+	<setting name="programablekey.5.line"><type><integer/></type></setting>
+	<setting name="programablekey.5.value"><type><string/></type></setting>
+	<setting name="programablekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.5.history_type"><type><string/></type></setting>
+	<setting name="programablekey.5.label"><type><string/></type></setting>
+
+	<setting name="programablekey.6.type"><type refid="ProgrammableKeysT22T26T28"/><value>29</value></setting>
+	<setting name="programablekey.6.line"><type><integer/></type></setting>
+	<setting name="programablekey.6.value"><type><string/></type></setting>
+	<setting name="programablekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.6.history_type"><type><string/></type></setting>
+	<setting name="programablekey.6.label"><type><string/></type></setting>
+
+	<setting name="programablekey.7.type"><type refid="ProgrammableKeysT22T26T28"/><value>31</value></setting>
+	<setting name="programablekey.7.line"><type><integer/></type></setting>
+	<setting name="programablekey.7.value"><type><string/></type></setting>
+	<setting name="programablekey.7.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.7.history_type"><type><string/></type></setting>
+	<setting name="programablekey.7.label"><type><string/></type></setting>
+
+	<setting name="programablekey.8.type"><type refid="ProgrammableKeysT22T26T28"/><value>31</value></setting>
+	<setting name="programablekey.8.line"><type><integer/></type></setting>
+	<setting name="programablekey.8.value"><type><string/></type></setting>
+	<setting name="programablekey.8.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.8.history_type"><type><string/></type></setting>
+	<setting name="programablekey.8.label"><type><string/></type></setting>
+
+	<setting name="programablekey.9.type"><type refid="ProgrammableKeysT22T26T28"/><value>33</value></setting>
+	<setting name="programablekey.9.line"><type><integer/></type></setting>
+	<setting name="programablekey.9.value"><type><string/></type></setting>
+	<setting name="programablekey.9.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.9.history_type"><type><string/></type></setting>
+	<setting name="programablekey.9.label"><type><string/></type></setting>
+
+	<setting name="programablekey.10.type"><type refid="ProgrammableKeysT22T26T28"/><value>0</value></setting>
+	<setting name="programablekey.10.line"><type><integer/></type></setting>
+	<setting name="programablekey.10.value"><type><string/></type></setting>
+	<setting name="programablekey.10.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.10.history_type"><type><string/></type></setting>
+	<setting name="programablekey.10.label"><type><string/></type></setting>
+
+	<setting name="programablekey.11.type"><type refid="ProgrammableKeysT22T26T28"/><value>0</value></setting>
+	<setting name="programablekey.11.line"><type><integer/></type></setting>
+	<setting name="programablekey.11.value"><type><string/></type></setting>
+	<setting name="programablekey.11.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.11.history_type"><type><string/></type></setting>
+	<setting name="programablekey.11.label"><type><string/></type></setting>
+
+	<setting name="programablekey.12.type"><type refid="ProgrammableKeysT22T26T28"/><value>0</value></setting>
+	<setting name="programablekey.12.line"><type><integer/></type></setting>
+	<setting name="programablekey.12.value"><type><string/></type></setting>
+	<setting name="programablekey.12.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.12.history_type"><type><string/></type></setting>
+	<setting name="programablekey.12.label"><type><string/></type></setting>
+
+	<setting name="programablekey.13.type"><type refid="ProgrammableKeysT22T26T28"/><value>0</value></setting>
+	<setting name="programablekey.13.line"><type><integer/></type></setting>
+	<setting name="programablekey.13.value"><type><string/></type></setting>
+	<setting name="programablekey.13.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.13.history_type"><type><string/></type></setting>
+	<setting name="programablekey.13.label"><type><string/></type></setting>
+
+	<setting name="programablekey.14.type"><type refid="ProgrammableKeysT22T26T28"/><value>2</value></setting>
+	<setting name="programablekey.14.line"><type><integer/></type></setting>
+	<setting name="programablekey.14.value"><type><string/></type></setting>
+	<setting name="programablekey.14.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.14.history_type"><type><string/></type></setting>
+	<setting name="programablekey.14.label"><type><string/></type></setting>
+</group>
+
+<group name="programmable-keys-T32" if="ProgrammableKeysT32">
+	<setting name="programablekey.1.type"><type refid="ProgrammableKeysT32"/><value>28</value></setting>	
+	<setting name="programablekey.1.line"><type><integer/></type></setting>
+	<setting name="programablekey.1.value"><type><string/></type></setting>
+	<setting name="programablekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.1.history_type"><type><string/></type></setting>
+	<setting name="programablekey.1.label"><type><string/></type></setting>
+
+	<setting name="programablekey.2.type"><type refid="ProgrammableKeysT32"/><value>29</value></setting>	
+	<setting name="programablekey.2.line"><type><integer/></type></setting>
+	<setting name="programablekey.2.value"><type><string/></type></setting>
+	<setting name="programablekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.2.history_type"><type><string/></type></setting>
+	<setting name="programablekey.2.label"><type><string/></type></setting>
+
+	<setting name="programablekey.3.type"><type refid="ProgrammableKeysT32"/><value>5</value></setting>	
+	<setting name="programablekey.3.line"><type><integer/></type></setting>
+	<setting name="programablekey.3.value"><type><string/></type></setting>
+	<setting name="programablekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.3.history_type"><type><string/></type></setting>
+	<setting name="programablekey.3.label"><type><string/></type></setting>
+
+	<setting name="programablekey.4.type"><type refid="ProgrammableKeysT32"/><value>30</value></setting>	
+	<setting name="programablekey.4.line"><type><integer/></type></setting>
+	<setting name="programablekey.4.value"><type><string/></type></setting>
+	<setting name="programablekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.4.history_type"><type><string/></type></setting>
+	<setting name="programablekey.4.label"><type><string/></type></setting>
+
+	<setting name="programablekey.5.type"><type refid="ProgrammableKeysT32"/><value>28</value></setting>	
+	<setting name="programablekey.5.line"><type><integer/></type></setting>
+	<setting name="programablekey.5.value"><type><string/></type></setting>
+	<setting name="programablekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.5.history_type"><type><string/></type></setting>
+	<setting name="programablekey.5.label"><type><string/></type></setting>
+
+	<setting name="programablekey.6.type"><type refid="ProgrammableKeysT32"/><value>29</value></setting>
+	<setting name="programablekey.6.line"><type><integer/></type></setting>
+	<setting name="programablekey.6.value"><type><string/></type></setting>
+	<setting name="programablekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.6.history_type"><type><string/></type></setting>
+	<setting name="programablekey.6.label"><type><string/></type></setting>
+
+	<setting name="programablekey.7.type"><type refid="ProgrammableKeysT32"/><value>48</value></setting>
+	<setting name="programablekey.7.line"><type><integer/></type></setting>
+	<setting name="programablekey.7.value"><type><string/></type></setting>
+	<setting name="programablekey.7.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.7.history_type"><type><string/></type></setting>
+	<setting name="programablekey.7.label"><type><string/></type></setting>
+
+	<setting name="programablekey.8.type"><type refid="ProgrammableKeysT32"/><value>49</value></setting>
+	<setting name="programablekey.8.line"><type><integer/></type></setting>
+	<setting name="programablekey.8.value"><type><string/></type></setting>
+	<setting name="programablekey.8.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.8.history_type"><type><string/></type></setting>
+	<setting name="programablekey.8.label"><type><string/></type></setting>
+
+	<setting name="programablekey.9.type"><type refid="ProgrammableKeysT32"/><value>33</value></setting>
+	<setting name="programablekey.9.line"><type><integer/></type></setting>
+	<setting name="programablekey.9.value"><type><string/></type></setting>
+	<setting name="programablekey.9.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.9.history_type"><type><string/></type></setting>
+	<setting name="programablekey.9.label"><type><string/></type></setting>
+
+	<setting name="programablekey.10.type"><type refid="ProgrammableKeysT32"/><value>0</value></setting>
+	<setting name="programablekey.10.line"><type><integer/></type></setting>
+	<setting name="programablekey.10.value"><type><string/></type></setting>
+	<setting name="programablekey.10.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.10.history_type"><type><string/></type></setting>
+	<setting name="programablekey.10.label"><type><string/></type></setting>
+
+	<setting name="programablekey.14.type"><type refid="ProgrammableKeysT32"/><value>2</value></setting>
+	<setting name="programablekey.14.line"><type><integer/></type></setting>
+	<setting name="programablekey.14.value"><type><string/></type></setting>
+	<setting name="programablekey.14.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.14.history_type"><type><string/></type></setting>
+	<setting name="programablekey.14.label"><type><string/></type></setting>
+</group>
+
+<group name="programmable-keys-T38" if="ProgrammableKeysT38">
+	<setting name="programablekey.1.type"><type refid="ProgrammableKeysT38"/><value>28</value></setting>	
+	<setting name="programablekey.1.line"><type><integer/></type></setting>
+	<setting name="programablekey.1.value"><type><string/></type></setting>
+	<setting name="programablekey.1.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.1.history_type"><type><string/></type></setting>
+	<setting name="programablekey.1.label"><type><string/></type></setting>
+
+	<setting name="programablekey.2.type"><type refid="ProgrammableKeysT38"/><value>29</value></setting>	
+	<setting name="programablekey.2.line"><type><integer/></type></setting>
+	<setting name="programablekey.2.value"><type><string/></type></setting>
+	<setting name="programablekey.2.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.2.history_type"><type><string/></type></setting>
+	<setting name="programablekey.2.label"><type><string/></type></setting>
+
+	<setting name="programablekey.3.type"><type refid="ProgrammableKeysT38"/><value>5</value></setting>	
+	<setting name="programablekey.3.line"><type><integer/></type></setting>
+	<setting name="programablekey.3.value"><type><string/></type></setting>
+	<setting name="programablekey.3.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.3.history_type"><type><string/></type></setting>
+	<setting name="programablekey.3.label"><type><string/></type></setting>
+
+	<setting name="programablekey.4.type"><type refid="ProgrammableKeysT38"/><value>30</value></setting>	
+	<setting name="programablekey.4.line"><type><integer/></type></setting>
+	<setting name="programablekey.4.value"><type><string/></type></setting>
+	<setting name="programablekey.4.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.4.history_type"><type><string/></type></setting>
+	<setting name="programablekey.4.label"><type><string/></type></setting>
+
+	<setting name="programablekey.5.type"><type refid="ProgrammableKeysT38"/><value>28</value></setting>	
+	<setting name="programablekey.5.line"><type><integer/></type></setting>
+	<setting name="programablekey.5.value"><type><string/></type></setting>
+	<setting name="programablekey.5.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.5.history_type"><type><string/></type></setting>
+	<setting name="programablekey.5.label"><type><string/></type></setting>
+
+	<setting name="programablekey.6.type"><type refid="ProgrammableKeysT38"/><value>29</value></setting>
+	<setting name="programablekey.6.line"><type><integer/></type></setting>
+	<setting name="programablekey.6.value"><type><string/></type></setting>
+	<setting name="programablekey.6.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.6.history_type"><type><string/></type></setting>
+	<setting name="programablekey.6.label"><type><string/></type></setting>
+
+	<setting name="programablekey.7.type"><type refid="ProgrammableKeysT38"/><value>48</value></setting>
+	<setting name="programablekey.7.line"><type><integer/></type></setting>
+	<setting name="programablekey.7.value"><type><string/></type></setting>
+	<setting name="programablekey.7.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.7.history_type"><type><string/></type></setting>
+	<setting name="programablekey.7.label"><type><string/></type></setting>
+
+	<setting name="programablekey.8.type"><type refid="ProgrammableKeysT38"/><value>49</value></setting>
+	<setting name="programablekey.8.line"><type><integer/></type></setting>
+	<setting name="programablekey.8.value"><type><string/></type></setting>
+	<setting name="programablekey.8.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.8.history_type"><type><string/></type></setting>
+	<setting name="programablekey.8.label"><type><string/></type></setting>
+
+	<setting name="programablekey.9.type"><type refid="ProgrammableKeysT38"/><value>33</value></setting>
+	<setting name="programablekey.9.line"><type><integer/></type></setting>
+	<setting name="programablekey.9.value"><type><string/></type></setting>
+	<setting name="programablekey.9.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.9.history_type"><type><string/></type></setting>
+	<setting name="programablekey.9.label"><type><string/></type></setting>
+
+	<setting name="programablekey.10.type"><type refid="ProgrammableKeysT38"/><value>0</value></setting>
+	<setting name="programablekey.10.line"><type><integer/></type></setting>
+	<setting name="programablekey.10.value"><type><string/></type></setting>
+	<setting name="programablekey.10.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.10.history_type"><type><string/></type></setting>
+	<setting name="programablekey.10.label"><type><string/></type></setting>
+
+	<setting name="programablekey.11.type"><type refid="ProgrammableKeysT38"/><value>0</value></setting>
+	<setting name="programablekey.11.line"><type><integer/></type></setting>
+	<setting name="programablekey.11.value"><type><string/></type></setting>
+	<setting name="programablekey.11.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.11.history_type"><type><string/></type></setting>
+	<setting name="programablekey.11.label"><type><string/></type></setting>
+
+	<setting name="programablekey.12.type"><type refid="ProgrammableKeysT38"/><value>0</value></setting>
+	<setting name="programablekey.12.line"><type><integer/></type></setting>
+	<setting name="programablekey.12.value"><type><string/></type></setting>
+	<setting name="programablekey.12.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.12.history_type"><type><string/></type></setting>
+	<setting name="programablekey.12.label"><type><string/></type></setting>
+
+	<setting name="programablekey.13.type"><type refid="ProgrammableKeysT38"/><value>0</value></setting>
+	<setting name="programablekey.13.line"><type><integer/></type></setting>
+	<setting name="programablekey.13.value"><type><string/></type></setting>
+	<setting name="programablekey.13.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.13.history_type"><type><string/></type></setting>
+	<setting name="programablekey.13.label"><type><string/></type></setting>
+
+	<setting name="programablekey.14.type"><type refid="ProgrammableKeysT38"/><value>2</value></setting>
+	<setting name="programablekey.14.line"><type><integer/></type></setting>
+	<setting name="programablekey.14.value"><type><string/></type></setting>
+	<setting name="programablekey.14.xml_phonebook"><type><string/></type></setting>
+	<setting name="programablekey.14.history_type"><type><string/></type></setting>
+	<setting name="programablekey.14.label"><type><string/></type></setting>
+</group>
+
+
+<!--// 
+#######################################################################################
+##         	                  Memory Key (For T38G only)                         ##              
+#######################################################################################
+X ranges from 1 to 10;
+memorykey.x.line Configure the desired line to apply the key feature. It ranges from 0 to 6.
+The value 0 of the "memorykey.x.line" stands for Auto, it means the first available line. 
+But, when the DSS key is configured as BLF, BLF List, Shared Line, Call Park, Pick Up, ACD or Voice Mail feature, the value 0 stands for line 1.
+memorykey.x.value Enter the value of some features. E.g. When configuring the DSS key to be BLF, enter the number of the monitored user.
+memorykey.x.pickup_value Enter the pickup code, this parameter is only appilicable to BLF.
+memorykey.x.type Assign the desired feature to the memory key.
+Valid types are:  0-N/A(default for memory key)  1-Conference 		 2-Forward    3-Transfer      4-Hold        5-DND             6-Redial                        7-Call Return     8-SMS    
+                  9-Call Pickup                  10-Call Park     11-DTMF      12-Voicemail    13-SpeedDial  14-Intercom       15-Line(default for line key)   16-BLF            17-URL    
+                  18-Group Listening             19-Public Hold   20-Private   21-Shared Line  22-XML Group  23-Group Pickup   24-Paging                       25-Record         27-XML Browser    
+                  34-Hot Desking                 35-URL Record    38-LDAP      39-BLF List     40-Prefix     41-Zero-Sp-Touch  42-ACD                          45-Local Group    46-Broadsoft Group 
+memorykey.x.xml_phonebook Specify the desired remote phonebook/local group/BSFT phonebook for the DSS key. This parameter is only appilicable to the feature XML Group/Local Group/Broadsoft Group.  
+memorykey.x.sub_type =
+ //-->
+ 
+ <group name="memory-keys-T26T28" if="MemoryKeysT26T28">
+    <setting name="memorykey.1.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.1.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.1.value"><type><string/></type></setting>
+    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.1.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.1.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.2.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.2.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.2.value"><type><string/></type></setting>
+    <setting name="memorykey.2.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.2.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.2.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.3.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.3.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.3.value"><type><string/></type></setting>
+    <setting name="memorykey.3.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.3.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.3.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.4.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.4.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.4.value"><type><string/></type></setting>
+    <setting name="memorykey.4.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.4.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.4.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.5.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.5.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.5.value"><type><string/></type></setting>
+    <setting name="memorykey.5.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.5.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.5.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.6.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.6.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.6.value"><type><string/></type></setting>
+    <setting name="memorykey.6.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.6.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.6.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.7.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.7.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.7.value"><type><string/></type></setting>
+    <setting name="memorykey.7.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.7.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.7.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.8.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.8.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.8.value"><type><string/></type></setting>
+    <setting name="memorykey.8.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.8.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.8.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.9.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.9.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.9.value"><type><string/></type></setting>
+    <setting name="memorykey.9.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.9.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.9.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.10.type"><type refid="MemoryKeysT26T28"/><value>99</value></setting>
+    <setting name="memorykey.10.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.10.value"><type><string/></type></setting>
+    <setting name="memorykey.10.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.10.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.10.sub_type"><type><string/></type></setting>
+
+ </group>
+
+ <group name="memory-keys-T38" if="MemoryKeysT38">
+    <setting name="memorykey.1.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.1.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.1.value"><type><string/></type></setting>
+    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.1.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.1.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.2.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.2.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.2.value"><type><string/></type></setting>
+    <setting name="memorykey.2.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.2.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.2.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.3.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.3.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.3.value"><type><string/></type></setting>
+    <setting name="memorykey.3.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.3.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.3.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.4.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.4.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.4.value"><type><string/></type></setting>
+    <setting name="memorykey.4.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.4.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.4.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.5.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.5.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.5.value"><type><string/></type></setting>
+    <setting name="memorykey.5.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.5.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.5.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.6.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.6.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.6.value"><type><string/></type></setting>
+    <setting name="memorykey.6.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.6.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.6.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.7.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.7.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.7.value"><type><string/></type></setting>
+    <setting name="memorykey.7.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.7.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.7.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.8.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.8.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.8.value"><type><string/></type></setting>
+    <setting name="memorykey.8.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.8.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.8.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.9.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.9.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.9.value"><type><string/></type></setting>
+    <setting name="memorykey.9.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.9.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.9.sub_type"><type><string/></type></setting>
+    
+    <setting name="memorykey.10.type"><type refid="MemoryKeysT38"/><value>99</value></setting>
+    <setting name="memorykey.10.line"><type><integer/></type><value>0</value></setting>
+    <setting name="memorykey.10.value"><type><string/></type></setting>
+    <setting name="memorykey.10.pickup_value"><type><string/></type></setting>
+    <setting name="memorykey.10.xml_phonebook"><type><string/></type></setting>
+    <setting name="memorykey.10.sub_type"><type><string/></type></setting>
+
+ </group>
+    
+
+ <group name="expansion-keys-T26T28" if="ExpansionKeysT26T28">
+    <setting name="expansion_module.1.key.1.type" advanced="true"><type refid="ExpansionKeysT26T28"/><value>37</value></setting>
+    <setting name="expansion_module.1.key.1.line" advanced="true"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.1.value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.1.pickup_value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.1.label" advanced="true"><type><string/></type><value>List 1</value></setting>
+    
+    <setting name="expansion_module.1.key.2.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.2.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.2.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.2.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.2.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.3.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.3.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.3.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.3.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.3.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.4.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.4.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.4.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.4.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.4.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.5.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.5.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.5.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.5.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.5.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.6.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.6.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.6.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.6.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.6.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.7.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.7.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.7.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.7.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.7.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.8.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.8.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.8.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.8.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.8.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.9.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.9.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.9.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.9.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.9.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.10.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.10.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.10.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.10.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.10.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.11.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.11.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.11.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.11.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.11.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.12.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.12.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.12.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.12.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.12.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.13.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.13.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.13.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.13.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.13.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.14.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.14.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.14.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.14.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.14.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.15.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.15.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.15.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.15.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.15.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.16.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.16.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.16.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.16.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.16.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.17.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.17.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.17.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.17.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.17.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.18.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.18.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.18.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.18.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.18.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.19.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.19.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.19.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.19.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.19.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.20.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.20.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.20.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.20.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.20.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.21.type" advanced="true"><type refid="ExpansionKeysT26T28"/><value>37</value></setting>
+    <setting name="expansion_module.1.key.21.line" advanced="true"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.21.value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.21.pickup_value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.21.label" advanced="true"><type><string/></type><value>List 2</value></setting>
+    
+    <setting name="expansion_module.1.key.22.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.22.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.22.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.22.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.22.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.23.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.23.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.23.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.23.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.23.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.24.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.24.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.24.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.24.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.24.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.25.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.25.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.25.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.25.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.25.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.26.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.26.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.26.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.26.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.26.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.27.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.27.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.27.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.27.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.27.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.28.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.28.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.28.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.28.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.28.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.29.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.29.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.29.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.29.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.29.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.30.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.30.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.30.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.30.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.30.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.31.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.31.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.31.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.31.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.31.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.32.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.32.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.32.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.32.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.32.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.33.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.33.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.33.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.33.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.33.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.34.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.34.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.34.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.34.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.34.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.35.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.35.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.35.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.35.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.35.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.36.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.36.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.36.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.36.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.36.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.37.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.37.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.37.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.37.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.37.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.38.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.38.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.38.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.38.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.38.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.39.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.39.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.39.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.39.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.39.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.40.type"><type refid="ExpansionKeysT26T28"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.40.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.40.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.40.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.40.label"><type><string/></type></setting>
+</group>
+
+
+
+<group name="expansion-keys-T38" if="ExpansionKeysT38">
+    <setting name="expansion_module.1.key.1.type" advanced="true"><type refid="ExpansionKeysT38"/><value>37</value></setting>
+    <setting name="expansion_module.1.key.1.line" advanced="true"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.1.value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.1.pickup_value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.1.label" advanced="true"><type><string/></type><value>List 1</value></setting>
+    
+    <setting name="expansion_module.1.key.2.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.2.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.2.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.2.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.2.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.3.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.3.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.3.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.3.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.3.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.4.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.4.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.4.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.4.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.4.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.5.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.5.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.5.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.5.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.5.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.6.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.6.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.6.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.6.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.6.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.7.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.7.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.7.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.7.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.7.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.8.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.8.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.8.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.8.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.8.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.9.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.9.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.9.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.9.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.9.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.10.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.10.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.10.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.10.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.10.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.11.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.11.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.11.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.11.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.11.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.12.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.12.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.12.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.12.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.12.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.13.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.13.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.13.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.13.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.13.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.14.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.14.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.14.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.14.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.14.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.15.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.15.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.15.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.15.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.15.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.16.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.16.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.16.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.16.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.16.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.17.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.17.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.17.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.17.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.17.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.18.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.18.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.18.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.18.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.18.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.19.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.19.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.19.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.19.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.19.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.20.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.20.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.20.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.20.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.20.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.21.type" advanced="true"><type refid="ExpansionKeysT38"/><value>37</value></setting>
+    <setting name="expansion_module.1.key.21.line" advanced="true"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.21.value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.21.pickup_value" advanced="true"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.21.label" advanced="true"><type><string/></type><value>List 2</value></setting>
+    
+    <setting name="expansion_module.1.key.22.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.22.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.22.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.22.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.22.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.23.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.23.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.23.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.23.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.23.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.24.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.24.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.24.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.24.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.24.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.25.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.25.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.25.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.25.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.25.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.26.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.26.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.26.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.26.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.26.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.27.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.27.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.27.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.27.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.27.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.28.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.28.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.28.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.28.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.28.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.29.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.29.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.29.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.29.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.29.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.30.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.30.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.30.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.30.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.30.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.31.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.31.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.31.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.31.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.31.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.32.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.32.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.32.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.32.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.32.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.33.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.33.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.33.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.33.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.33.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.34.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.34.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.34.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.34.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.34.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.35.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.35.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.35.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.35.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.35.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.36.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.36.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.36.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.36.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.36.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.37.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.37.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.37.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.37.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.37.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.38.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.38.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.38.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.38.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.38.label"><type><string/></type></setting>
+    
+    <setting name="expansion_module.1.key.39.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.39.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.39.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.39.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.39.label"><type><string/></type></setting>
+
+    <setting name="expansion_module.1.key.40.type"><type refid="ExpansionKeysT38"/><value>99</value></setting>
+    <setting name="expansion_module.1.key.40.line"><type><integer/></type><value>0</value></setting>
+    <setting name="expansion_module.1.key.40.value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.40.pickup_value"><type><string/></type></setting>
+    <setting name="expansion_module.1.key.40.label"><type><string/></type></setting>
+</group>
+
+<group name="acd">
+<!--// 
+#######################################################################################
+##           Automatic Call Distribute                                               ##
+#######################################################################################
+ //-->
+<!--// Enable or disable the phone to automatically change the phone status to available; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="acd.auto_available"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the interval (in seconds) to automatically turn the state of the ACD agent to available. It ranges from 0 to 120, the default value is 60. //-->
+	<setting name="acd.auto_available_timer"><type><integer/></type><value>60</value></setting>
+    </group>
+    <group name="action-urls">
+<!--// 
+#######################################################################################
+#         	                   Action URL Settings                                   ##    
+#######################################################################################
+
+action_url.setup_completed Inform the server that the phone has completed the startup.              
+action_url.dnd_on Inform the server that the DND is activated on the phone. 
+The value format is: http://IP address of server/help.xml?variable name=variable value. 
+The valid variable values are: $mac MAC address of phone, $ip The current IP address of phone, $model Phone model, $firmware Phone firmware version. 
+$active_ur he SIP URI of the current account when the phone is in the incoming state, outgoing state or during conversation. 
+$active_use he username of the current account when the phone is in the incoming state, outgoing state or during conversation.
+$active_hos he host name of the current account when the phone is in the incoming state, the outgoing state or during conversation. 
+$loca he SIP URI of the caller when outgoing calls or the SIP URI of the callee when receiving calls. 
+$remot he SIP URI of the callee when outgoing calls or the SIP URI of the caller when receiving calls.
+$display_loca he display name of the caller when outgoing calls or the display name of the callee when receiving calls.
+$display_remot he display name of the callee when outgoing calls or the display name of the caller when receiving calls.
+$call_i he caller ID when in the incoming state, the outgoing state or during conversation.
+For example, action_url.log_on = http://192.168.1.20/help.xml?mac=$mac
+ //-->
+	<setting name="action_url.setup_completed"><type><string/></type></setting>
+	<setting name="action_url.log_on"><type><string/></type></setting>
+	<setting name="action_url.log_off"><type><string/></type></setting>
+	<setting name="action_url.register_failed"><type><string/></type></setting>
+	<setting name="action_url.off_hook"><type><string/></type></setting>
+	<setting name="action_url.on_hook"><type><string/></type></setting>
+	<setting name="action_url.incoming_call"><type><string/></type></setting>
+	<setting name="action_url.outgoing_call"><type><string/></type></setting>
+	<setting name="action_url.call_established"><type><string/></type></setting>
+	<setting name="action_url.dnd_on"><type><string/></type></setting>
+	<setting name="action_url.dnd_off"><type><string/></type></setting>
+	<setting name="action_url.always_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.always_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.busy_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.busy_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.no_answer_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.no_answer_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.transfer_call"><type><string/></type></setting>
+	<setting name="action_url.blind_transfer_call"><type><string/></type></setting>
+	<setting name="action_url.attended_transfer_call"><type><string/></type></setting>
+	<setting name="action_url.hold"><type><string/></type></setting>
+	<setting name="action_url.unhold"><type><string/></type></setting>
+	<setting name="action_url.mute"><type><string/></type></setting>
+	<setting name="action_url.unmute"><type><string/></type></setting>
+	<setting name="action_url.missed_call"><type><string/></type></setting>
+	<setting name="action_url.call_terminated"><type><string/></type></setting>
+	<setting name="action_url.busy_to_idle"><type><string/></type></setting>
+	<setting name="action_url.idle_to_busy"><type><string/></type></setting>
+	<setting name="action_url.forward_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.reject_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.answer_new_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.transfer_finished"><type><string/></type></setting>
+	<setting name="action_url.transfer_failed"><type><string/></type></setting>
+    </group>
+<!--// 
+#######################################################################################
+##         	                   Language Settings                                     ##       
+#######################################################################################
+ //-->
+<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
+<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese.
+lang.gui = English //-->
+    <group name="language1" if="yealink-language1">
+    <setting name="lang.gui" ><type refid="yealink-language1"/><value>Dutch</value></setting>
+    <setting name="lang.wui" ><type refid="yealink-language1"/><value>Dutch</value></setting>
+    </group>
+    <group name="language2" if="yealink-language2">
+    <setting name="lang.gui" ><type refid="yealink-language2"/><value>Dutch</value></setting>
+    <setting name="lang.wui" ><type refid="yealink-language2"/><value>Dutch</value></setting>
+    </group>
+
+    <group name="time">
+<!--// 
+#######################################################################################
+##         	                   Time Settings                                         ##
+#######################################################################################
+ //-->
+<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
+The default time zone name is China(Beijing).   
+local_time.time_zone = +8
+local_time.time_zone_name = China(Beijing) //-->
+	<setting name="local_time.time_zone"><type refid="yealink-timezones"/></setting>
+	<setting name="local_time.time_zone_name"><type><string/></type></setting>
+<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
+	<setting name="local_time.ntp_server1"><type><string/></type></setting>
+	<setting name="local_time.ntp_server2"><type><string/></type></setting>
+<!--// Configure the update interval (in seconds) when using the NTP server. The default value is 1000. //-->
+	<setting name="local_time.interval"><type><integer/></type><value>1000</value></setting>
+<!--// Configure the daylight saving time feature; 0-Disabled, 1-Enabled, 2-Automatic (default); //-->
+	<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
+<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
+	<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
+<!--// Configure the start time of DST. The default value is 1/1/0.
+If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
+If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
+For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
+	<setting name="local_time.start_time"><type><string/></type></setting>
+<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
+	<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
+<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
+	<setting name="local_time.offset_time"><type><integer/></type></setting>">
+<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
+	<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
+<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
+	<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
+<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
+	<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
+    </group>
+    <group name="hot-desking">
+<!--// 
+#######################################################################################
+##         	        Hot Desking                                                  ##
+#######################################################################################
+Enable or disable the phone to show the following items on the login wizard during startup; 0-Disabled, 1-Enabled;  
+hotdesking.startup_register_name_enable = 0 (default)
+hotdesking.startup_username_enable = 1 (default)
+hotdesking.startup_password_enable = 1 (default)
+hotdesking.startup_sip_server_enable = 1 (default)
+hotdesking.startup_outbound_enable = 0 (default)
+ //-->
+	<setting name="hotdesking.startup_register_name_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_username_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_password_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_outbound_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to show the following items on the login wizard when pressing the Hot Desking DSS key;
+0-Disabled, 1-Enabled;
+hotdesking.dsskey_register_name_enable = 0 (default)
+hotdesking.dsskey_username_enable = 1 (default)
+hotdesking.dsskey_password_enable = 1 (default)
+hotdesking.dsskey_sip_server_enable = 1 (default)
+hotdesking.dsskey_outbound_enable = 0 (default) //-->
+	<setting name="hotdesking.dsskey_register_name_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_username_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="alert-info">
+<!--// 
+#######################################################################################
+##         	           Distinctive Ring Tones                                        ##  
+#######################################################################################
+ //-->
+<!--// "X" ranges from 1 to 10; 
+Configure the text to map the keywords contained in the "Alert-info" header.
+distinctive_ring_tones.alert_info.X.text = family
+Specify the ring tone for each text. It ranges from 1 to 8. The default value 1 stands for Ring1.wav.
+distinctive_ring_tones.alert_info.X.ringer = 1 //-->
+	<setting name="distinctive_ring_tones.alert_info.1.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.1.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.2.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.2.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.3.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.3.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.4.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.4.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.5.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.5.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.6.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.6.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.7.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.7.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.8.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.8.ringer"><type><integer/></type><value>1</value></setting>
+    </group>
+    <group name="auto-redial">
+<!--// 
+#######################################################################################
+##         	               Auto Redial                                               ##
+#######################################################################################
+ //-->
+<!--// Enable or disable the auto redial feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="auto_redial.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the interval (in seconds) to wait before redial. It ranges from 1 to 300. The default value is 10. //-->
+	<setting name="auto_redial.interval"><type><integer/></type><value>10</value></setting>
+
+<!--// Configure the times of auto redialing . It ranges from 1 to 300. The default value is 10. //-->
+	<setting name="auto_redial.times"><type><integer/></type><value>10</value></setting>
+    </group>
+    <group name="zero-touch">
+<!--// 
+#######################################################################################
+##         	               Zero Touch                                                ##
+#######################################################################################
+ //-->
+<!--// Enable or disable the zero-sp-touch; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="zero_touch.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the waiting time (in seconds) before canceling the zero-sp-touch. It ranges from 0 to 100, the default value is 5. //-->
+	<setting name="zero_touch.wait_time"><type><integer/></type><value>5</value></setting>
+    </group>
+    <group name="push-xml">
+<!--// 
+#######################################################################################
+##         	               Push XML                                                  ##
+#######################################################################################
+ //-->
+	<setting name="push_xml.server"><type><string/></type></setting>
+<!--// Enable or disable the phone to display the push XML interface when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="push_xml.block_in_calling"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to use the push XML via SIP Notify message; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="push_xml.sip_notify"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="dial-plan">
+<!--// 
+#######################################################################################
+##         	              Dial Plan                                                  ##
+#######################################################################################
+ //-->
+<!--// Configure the area code. //-->
+	<setting name="dialplan.area_code.code"><type><integer/></type><value>%NULL%</value></setting>
+	<setting name="dialplan.area_code.min_len"><type refid="min_len_type"/><value>5</value></setting>
+	<setting name="dialplan.area_code.max_len"><type refid="max_len_type"/><value>5</value></setting>
+<!--// When applying the rule to multiple lines, each line ID separated by comma. 
+e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
+	<setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
+<!--// Configure the block out number. X ranges from 1 to 10.
+dialplan.block_out.number.x =
+When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
+dialplan.block_out.line_id.x =  //-->
+	<setting name="dialplan.block_out.number.1"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.2"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.3"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.4"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.5"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.6"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.7"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.8"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.9"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
+<!--// Configure the dialnow rule. X ranges from 1 to 20.
+dialplan.dialnow.rule.x = 
+dialplan.dialnow.line_id.x =  //-->
+	<setting name="dialplan.dialnow.rule.1"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.2"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.3"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.4"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.5"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.6"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.7"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.8"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.9"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.10"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.10"><type><string/></type></setting>
+
+	<setting name="dialplan.dialnow.rule.11"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.11"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.12"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.12"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.13"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.13"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.14"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.14"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.15"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.15"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.16"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.16"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.17"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.17"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.18"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.18"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.19"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.19"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
+
+<!--// Configure the replace rule. X ranges from 1 to 20.
+dialplan.replace.prefix.x = 
+dialplan.replace.replace.x = 
+dialplan.replace.line_id.x =  //-->
+	<setting name="dialplan.replace.prefix.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.20"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.20"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.20"><type><string/></type></setting>
+    </group>
+    <group name="bw-phonebook" hidden="yes">
+<!--// 
+#######################################################################################
+##         	    BSFT Phonebook                                                       ##
+#######################################################################################
+ //-->
+<!--// Configuration of BW phonebook. X ranges from 1 to 6.
+bw_phonebook.data.x.server = 
+bw_phonebook.data.x.port = 
+bw_phonebook.data.x.username = 
+bw_phonebook.data.x.password = 
+bw_phonebook.data.x.name =  //-->
+	<setting name="bw_phonebook.data.1.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.1.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.2.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.3.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.4.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.5.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.6.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.name"><type><string/></type></setting>
+    </group>
+    <group name="bw-call-log" hidden="yes">
+<!--// 
+#######################################################################################
+##                    BSFT Call Log                                                  ##
+#######################################################################################
+ //-->
+<!--// Configuration of the BW call log. X ranges from 1 to 3.  
+bw_call_log.data.x.server =   
+bw_call_log.data.x.port =     
+bw_call_log.data.x.username = 
+bw_call_log.data.x.password = 
+bw_call_log.data.x.name =  //-->
+	<setting name="bw_call_log.data.1.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.1.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.name"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.2.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.name"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.3.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.name"><type><string/></type></setting>
+<!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys;
+0-Disabled (default), 1-Enabled;
+Require reboot;  //-->
+	<setting name="bw.calllog_and_dir"><type><boolean/></type><value>0</value></setting>
+<!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default);
+Require reboot; //-->
+	<setting name="bw.behave_calllog"><type><boolean/></type><value>0</value></setting>
+<!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);
+Require reboot; //-->
+	<setting name="bw.behave_bw_dir"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="remote-phonebook">
+<!--// 
+#######################################################################################
+##         	    Remote phonebook                                                     ##
+#######################################################################################
+ //-->
+<!--// Configure the access URL and dispaly name of the remote phonebook. X ranges from 1 to 5.
+remote_phonebook.data.x.url =   
+remote_phonebook.data.x.name =  //-->
+	<setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
+    </group>
+    <group name="ldap">
+<!--// 
+#######################################################################################
+##         	              LDAP Settings                                              ##
+#######################################################################################
+ //-->
+<!--// Configure the search criteria for name and number lookups. //-->
+	<setting name="ldap.name_filter"><type><string/></type></setting>
+	<setting name="ldap.number_filter"><type><string/></type></setting>
+	<setting name="ldap.host"><type><string/></type></setting>
+	<setting name="ldap.port"><type><integer/></type><value>389</value></setting>
+	<setting name="ldap.base"><type><string/></type></setting>
+	<setting name="ldap.user"><type><string/></type></setting>
+	<setting name="ldap.password"><type><string/></type></setting>
+<!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
+	<setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
+	<setting name="ldap.name_attr"><type><string/></type></setting>
+	<setting name="ldap.numb_attr"><type><string/></type></setting>
+	<setting name="ldap.display_name"><type><string/></type></setting>
+<!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
+	<setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
+<!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
+	<setting name="ldap.search_delay"><type><integer/></type><value>2000</value></setting>
+<!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="features">
+<!--// 
+#######################################################################################
+##         	              Phone Features                                         ##
+#######################################################################################
+ //-->
+<!--// Configure the return code when activating DND; 404-No Found, 480-Temporarily not available (default), 486-Busy here;
+#features.dnd_refuse_code = 480  //-->
+	<setting name="features.dnd_refuse_code"><type><integer/></type><value>480</value></setting>
+<!--// Configure the return code when refusing a call. The valid values are 404, 480, 486 (default). //-->
+	<setting name="features.normal_refuse_code"><type><integer/></type><value>486</value></setting>
+<!--// Enable or disable the call completion feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="features.call_completion_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="features.dnd.on_code"><type><string/></type></setting>
+	<setting name="features.dnd.off_code"><type><string/></type></setting>
+<!--// Enable or disable the phone to receive the emergency call when in the DND mode; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="features.dnd.emergency_enable"><type><boolean/></type><value>1</value></setting>
+<!--// Specify the emergency number, multiple numbers (at most three) are separated by comma. //-->
+	<setting name="features.dnd.emergency_authorized_number"><type><string/></type></setting>
+<!--// Enable or disable the call waiting feature; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="call_waiting.enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="call_waiting.tone"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the intercom feature; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="features.intercom.allow"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to mute the Speaker when answering an intercom call; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="features.intercom.mute"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to play the intercom warning tone; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="features.intercom.tone"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to barge in an intercom call; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="features.intercom.barge"><type><boolean/></type><value>1</value></setting>
+<!--// Specify whether to display the contact name in the remote phonebook; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="features.remote_phonebook.enable"><type><boolean/></type><value>1</value></setting>
+<!--// Set the interval (in seconds) the phone updates the remote phonebook. The default value is 3600. //-->
+	<setting name="features.remote_phonebook.flash_time"><type><integer/></type><value>3600</value></setting>
+<!--// Configure the hotline number and delay time (in seconds). It ranges from 0 to 180, the default value of delay time is 2. //-->
+	<setting name="features.hotline_number"><type><string/></type></setting>
+	<setting name="features.hotline_delay"><type><integer/></type><value>2</value></setting>
+<!--// Configure the repetition times of DTMF end packet. The valid values are 1, 2, 3 (default). //-->
+	<setting name="features.dtmf.repetition"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
+<!--// Configure the delay time (in seconds) of playing busy tone when rejecting a call. The valid values are 0 (default), 3 and 5.  //-->
+	<setting name="features.busy_tone_delay"><type refid="yealink_busy_tone_delay_type"/><value>0</value></setting>
+<!--// Define the "#" or "*" key as the send key; 0-Disabled, 1-# key(default), 2-* key; //-->
+	<setting name="features.pound_key.mode"><type refid="yealink_poud_key_type"/><value>1</value></setting>
+<!--// Enable or disable the phone to play tone when pressing the digit key; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
+	<setting name="features.key_tone"><type><boolean/></type><value>1</value></setting>
+	<setting name="features.redial_tone"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to save the call history; 0-Disabled, 1-Enabled (default);  //-->
+	<setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
+<!--// Configure the phone to receive the action URI request from the specified IP address(es) or any IP address;
+#Enter multiple IP addresses (separated by comma) or "any"(stands for any IP address);  //-->
+	<setting name="features.action_uri_limit_ip"><type><string/></type></setting>
+<!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
+	<setting name="features.dsskey_blind_tran"><type><boolean/></type><value>1</value></setting>
+<!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
+	<setting name="features.relog_offtime"><type><integer/></type><value>5</value></setting>
+<!--// Enable or disable the phone to dial the IP address directly; 0-Disabled, 1-Enabled (default);
+Require reboot;  //-->
+	<setting name="features.direct_ip_call_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Specify the ring device when the phone is in the Headset mode; 0-use Speaker (default), 1-use Headset; //-->
+	<setting name="features.ringer_device.is_use_headset"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to pick up the call using the group pickup soft key; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="features.pickup.group_pickup_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the group pickup code. //-->
+	<setting name="features.pickup.group_pickup_code"><type><string/></type></setting>
+<!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="features.pickup.direct_pickup_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the directed pickup code. //-->
+	<setting name="features.pickup.direct_pickup_code"><type><boolean/></type><value>0</value></setting>
+<!--// Specify the way to notify the phone of the incoming call of the monitored user by visual or audio indicator;
+#0-Disabled (default), 1-Enabled;  //-->
+	<setting name="features.pickup.blf_visual_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="features.pickup.blf_audio_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to turn off the indicator LEDs of BLF and Call Park keys when the monitored states is idle.
+#0-Disabled (default), 1-Enabled;  //-->
+	<setting name="features.blf_and_callpark_idle_led_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the time (in seconds) the phone automatically dial out the dialed digits. It ranges from 1 to 14, the default value is 4.  //-->
+	<setting name="phone_setting.inter_digit_time"><type refid="inter_digit_time_type"/><value>4</value></setting>
+<!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
+	<setting name="phone_setting.flash_hook_timer"><type><integer/></type><value>1</value></setting>
+<!--// Configure the keypad lock type; 0-Disabled (default), 1-Menu Key, 2-Function Key, 3-All Keys, 4-Lock&amp;Answer;  //-->
+	<setting name="phone_setting.lock"><type refid="yealink_key_lock_type"/><value>0</value></setting>
+<!--// Set the unlock password and expiry time (in seconds) of phone lock. It ranges from 0 to 3600, the default value of expiry time is 10. //-->
+	<setting name="phone_setting.phone_lock.unlock_pin"><type><string/></type></setting>
+	<setting name="phone_setting.phone_lock.lock_time_out"><type><integer/></type><value>10</value></setting>
+<!--// Configure the ring tone for the phone. System ring tones are: Ring1.wav (default), Ring2.wav...Ring8.wav.
+#You can configure the custom ring tone (Busy.wav) for the phone, the value is: phone_setting.ring_type = Busy.wav  //-->
+	<setting name="phone_setting.ring_type"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
+<!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
+#The same level for different phones may result in different backlight intensities. 
+#The backlight level of T2xP ranges from 1 to 3.  //-->
+	<setting name="phone_setting.active_backlight_level"><type refid="active_backlight_level_type"/><value>2</value></setting>
+<!--// Configure the inactive backlight level. It ranges from 1 to 10, the default value is 1. //-->
+	<setting name="phone_setting.inactive_backlight_level"><type refid="active_backlight_level_type"/><value>1</value></setting>
+<!--// Configure the backlight time (in seconds). The valid values are: 1-Always on, 60 (default), 120, 300, 600, 1800.  //-->
+	<setting name="phone_setting.backlight_time"><type refid="ScreenSaverTimes"/><value>60</value></setting>
+<!--// Configure the phone background.
+#If you set the custom image (new.png) as phone backgroup, the value is: phone_setting.backgrounds = Config:new.png
+#If you set the system image (pictures(01).png) as phone backgroup, the value is: phone_setting.backgrounds = Resource:pictures(01).png  //-->
+	<setting name="phone_setting.backgrounds"><type><string/></type></setting>
+<!--// Configure the screen saver time (in seconds). The valid values are 0 (off), 1, 60 (default), 120, 300, 600, 1800.  //-->
+	<setting name="phone_setting.screen_saver_time"><type refid="ScreenSaverTimes"/><value>60</value></setting>
+	<setting name="phone_setting.lcd_logo.mode"><type refid="logo_types"/><value>0</value></setting>
+	<setting name="lcd_logo.url" />
+	<setting name="lcd_logo.delete" advanced="true" />
+<!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
+#phone_setting.ring_for_tranfailed = Ring1.wav  //-->
+	<setting name="phone_setting.ring_for_tranfailed"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
+<!--// Enable or disable the phone to show the logon wizard during startup; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.logon_wizard"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to automatically dial out the dialed digits in the pre-dial interface; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.predial_autodial"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to deal the 180 SIP message after the 183 SIP message; 0-Disabled, 1-Enabled (default);  //-->
+	<setting name="phone_setting.is_deal180"><type><boolean/></type><value>1</value></setting>
+<!--// Configure the delay time (in seconds) for the dialnow rule. It ranges from 1 to 14, the default value is 1.  //-->
+	<setting name="phone_setting.dialnow_delay"><type refid="dialnow_delay_type"/><value>1</value></setting>
+<!--// Enable or disable the user to customize the softkey layout; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.custom_softkey_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Configure the phone theme; 0-Theme1 (default), 1-Theme2, 2-Theme3, 3-Theme4;  //-->
+	<setting name="phone_setting.theme"><type refid="yealink_theme_type"/><value>0</value></setting>
+<!--// Configure the emergency number, each separated by comma. The default value is 112,911,110.  //-->
+	<setting name="phone_setting.emergency.number"><type><string/></type></setting>
+<!--// Enable or disable the  phone to display the short message automatically; 0-Disabled, 1-Enabled (default);  //-->
+	<setting name="phone_setting.sms_popup_enable"><type><boolean/></type><value>1</value></setting>
+<!--// Enable or disable the phone to turn off the power LED when it is idle; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.common_power_led_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to flash the power LED when receiving new voice mail or message; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.mail_power_led_flash_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to flash the power LED when muting a call; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.mute_power_led_flash_enable"><type><boolean/></type><value>0</value></setting>
+<!--// Enable or disable the phone to flash the power LED when placing a calll on hold; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.hold_power_led_flash_enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="downloads">
+<!--// 
+#######################################################################################
+##                     Configure the access URL of firmware                          ##                                 
+#######################################################################################
+ //-->
+	<setting name="firmware.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##                     Configure the access URL of the customized  ringtones         ##                                  
+#######################################################################################
+ //-->
+	<setting name="ringtone.url"><type><string/></type></setting>
+<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
+	<setting name="ringtone.delete"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##            Configure the access  URL of language file                             ##                                       
+#######################################################################################
+ //-->
+	<setting name="gui_lang.url"><type><string/></type></setting>
+<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
+	<setting name="gui_lang.delete"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##                     Certificates                                                  ##  
+#######################################################################################
+ //-->
+	<setting name="trusted_certificates.url"><type><string/></type></setting>
+<!--// trusted_certificates.delete = http://localhost/all,delete all the trusted certificates.  //-->
+	<setting name="trusted_certificates.delete"><type><string/></type></setting>
+	<setting name="server_certificates.url"><type><string/></type></setting>
+<!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
+	<setting name="server_certificates.delete"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##  Local Contact/DST Time/Dialnow Rule/Replace Rule                                 ##                                                     
+#######################################################################################
+ //-->
+	<setting name="local_contact.data.url"><type><string/></type></setting>
+	<setting name="auto_dst.url"><type><string/></type></setting>
+	<setting name="dialplan_dialnow.url"><type><string/></type></setting>
+	<setting name="dialplan_replace_rule.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##      Customized Factory Configurations                                            ##
+#######################################################################################
+ //-->
+<!--// Configure the access URL for downloading the customized factory configurations.  //-->
+	<setting name="custom_factory_configuration.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##          Call List                                                                ##                                            
+#######################################################################################
+ //-->
+<!--// Configure the access URL for downloading the call list.
+Require reboot  //-->
+	<setting name="call_list.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##            OpenVPN                                                                ##                                            
+#######################################################################################
+ //-->
+<!--// Configure the access URL for downloading the open VPN tar.  //-->
+	<setting name="openvpn.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##            Configure the access URL of the  Wallpaper                             ##                                            
+####################################################################################### 
+ //-->
+	<setting name="wallpaper_upload.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##     Configure the access URL of the Screensaver                                   ##                                            
+####################################################################################### 
+ //-->
+<!--// Configure the access URL for downloading the customized wallpaper.  //-->
+	<setting name="screen_saver.pic.url"><type><string/></type></setting>
+<!--// 
+#######################################################################################
+##     Configuration files for Var                                                   ##                                            
+#######################################################################################
+ //-->
+<!--// Configure the access URL for downloading the files for var.
+Require reboot  //-->
+	<setting name="web_item_level.url"><type><string/></type></setting>
+    </group>
+</model>
