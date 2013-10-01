@@ -1,1 +1,60 @@
-Initial commit
+-------
+Content
+-------
+Note
+Features
+Usage
+
+
+----
+NOTE
+----
+This is a fork from:
+https://github.com/siplabs/sipXyealink
+
+We added support for:
+- hotdesking
+- hotprovisioning
+
+We might work on pushing/contributing more of our changes upstream in near future…
+
+
+--------
+Features
+--------
+Provisioing     - This submodule enables provisioning of yealink phones T2x, T3x.
+Hotprovisioning - Provisioning without reboot, currenlty only in combination with hotdesking.
+Hotdesking      - It also support hotdesking/freeseating (sipXhotdeskingTc)
+
+
+-----
+Usage
+-----
+Requirements:
+- Correct building sipXecs 4.6, see: https://github.com/dhubler
+- sipXyealink depends on sipXhotdeskingTc, so first also add sipXhotdeskingTc. See: https://github.com/Telecats
+
+Notes:
+At this time we tested using commitId: bb89ac9a8ce8c0a5691e933192bdad840f923106 Not HEAD
+git checkout bb89ac9a8ce8c0a5691e933192bdad840f923106
+We will update to latest update in near future.
+
+Adding sipXyealink:
+# add submodule
+git submodule add https://github.com/Telecats/sipXyealinkTc.git
+git submodule init
+git submodule update
+
+#checkout correct branch
+cd sipXyealinkTc ; git checkout -b release-4.6 origin/release-4.6 ; cd ..
+
+#enable submodule
+add 'sipXyealink' to your build/modules-include file AFTER sipXhotdeskingTc before it needs sipXhotdeskingTc.
+
+For example:
+$(sipx_core)  $(sipx_lang) sipXhotdeskingTc sipXyealinkTc $(sipx_config)
+
+
+#build
+sipXyealinkTc should now be part of your build and you can start building the rpm's
+
