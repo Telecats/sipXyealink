@@ -14,11 +14,11 @@ BuildRequires: java-devel >= 1.6
 BuildRequires: zip
 BuildRequires: sipxcommons >= %version
 BuildRequires: sipxconfig >= %version
-BuildRequires: sipxhotdesking
+BuildRequires: sipxhotdeskingtc
 
 Requires: sipxconfig
 Requires: sipxcommons >= %version
-Requires: sipxhotdesking
+Requires: sipxhotdeskingtc
 
 Source: %name-%version.tar.gz
 
