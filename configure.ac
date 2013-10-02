@@ -4,7 +4,7 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License (AGPL) for more details. 
 
 AC_PREREQ(2.57)
-AC_INIT(sipXyealinkTc, 4.6.0, info@siplabs.ru)
+AC_INIT(sipXyealink, 4.6.0, info@siplabs.ru)
 AC_CONFIG_AUX_DIR(config)
 m4_include([config/general.m4])
 m4_include([config/sipXlib.m4])

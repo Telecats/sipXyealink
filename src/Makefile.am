@@ -11,7 +11,7 @@ EXTRA_DIST = \
 noinst_DATA = javac-yealink $(JAR_FILE)
 
 jardir = @SIPX_JAVADIR@/sipXconfig/plugins
-JAR_FILE = sipXyealinkTc.jar
+JAR_FILE = sipXyealink.jar
 jar_DATA = $(JAR_FILE)
 
 yealink_SRC = $(shell cd $(srcdir); find org -type f -name '*.java')
