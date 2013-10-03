@@ -9,4 +9,4 @@ yealink_PKGS = \
 	velocity \
 	commons-logging \
 	commons-http \
-    sipXhotdesking
+  plugins/sipXhotprovisioning
